@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-wasms",
-  "version": "0.1.12",
+  "version": "0.2.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "repository": "https://github.com/Gregoor/tree-sitter-wasms",
   "author": "Gregor <gregorwbr@gmail.com>, Menci <huanghaorui301@gmail.com>",
@@ -18,7 +18,7 @@
     "@types/node": "^20.11.17",
     "find-root": "^1.1.0",
     "tree-sitter": "^0.22.4",
-    "tree-sitter-agda": "^1.3.3",
+    "tree-sitter-agda": "^1.3.1",
     "tree-sitter-bash": "^0.23.3",
     "tree-sitter-c": "^0.23.4",
     "tree-sitter-c-sharp": "^0.23.1",
@@ -29,7 +29,7 @@
     "tree-sitter-dart": "github:UserNobody14/tree-sitter-dart#e81af6ab94a728ed99c30083be72d88e6d56cf9e",
     "tree-sitter-elisp": "^1.5.0",
     "tree-sitter-elixir": "github:elixir-lang/tree-sitter-elixir#b20eaa75565243c50be5e35e253d8beb58f45d56",
-    "tree-sitter-elm": "github:elm-tooling/tree-sitter-elm#02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e",
+    "tree-sitter-elm": "github:elm-tooling/tree-sitter-elm#e34bdc5c512918628b05b48e633f711123204e45",
     "tree-sitter-embedded-template": "^0.23.2",
     "tree-sitter-gdscript": "github:PrestonKnopp/tree-sitter-gdscript#48b49330888a4669b48619b211cc8da573827725",
     "tree-sitter-gleam": "github:gleam-lang/tree-sitter-gleam#066704e4826699e754d351e3bbe12bf2e51de9d8",
@@ -42,13 +42,13 @@
     "tree-sitter-json": "^0.24.8",
     "tree-sitter-julia": "^0.23.1",
     "tree-sitter-kotlin": "^0.3.8",
-    "tree-sitter-latex": "github:latex-lsp/tree-sitter-latex#7b06f6ed394308e7407a1703d2724128c45fc9d7",
+
     "tree-sitter-lua": "^2.1.3",
     "tree-sitter-markdown": "github:tree-sitter-grammars/tree-sitter-markdown#192407ab5a24bfc24f13332979b5e7967518754a",
     "tree-sitter-nix": "github:nix-community/tree-sitter-nix#21897cc3dcd15325303e46b85295b743742af6ab",
     "tree-sitter-objc": "^3.0.2",
     "tree-sitter-ocaml": "^0.23.2",
-    "tree-sitter-perl": "github:ganezdragon/tree-sitter-perl#b467c41aed6e52c7f581c18a3b50821995a82c95",
+    "tree-sitter-perl": "github:tree-sitter-perl/tree-sitter-perl#b467c41aed6e52c7f581c18a3b50821995a82c95",
     "tree-sitter-php": "^0.23.11",
     "tree-sitter-python": "^0.23.6",
     "tree-sitter-ql": "github:tree-sitter/tree-sitter-ql#1fd627a4e8bff8c24c11987474bd33112bead857",
@@ -65,7 +65,7 @@
     "tree-sitter-systemrdl": "^0.8.0",
     "tree-sitter-talon": "github:wenkokke/tree-sitter-talon#7119d7f3fefd0b0c7e900120b51f85a23e6c3160",
     "tree-sitter-typescript": "^0.23.2",
-    "tree-sitter-vue": "github.com/tree-sitter-grammars/tree-sitter-vue#7e48557b903a9db9c38cea3b7839ef7e1f36c693",
+    "tree-sitter-vue": "github.com/ikatyang/tree-sitter-vue#efd20240618d5c1b03ad0d5eac341202196f282d",
     "tree-sitter-xml": "github:ObserverOfTime/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",
     "ts-node": "^10.9.2",
     "typescript": "5.7.3"
@@ -76,6 +76,8 @@
   "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",
   "dependencies": {
-    "tree-sitter-wasms": "^0.1.11"
+    "tree-sitter-wasms": "^0.1.11",
+    "tree-sitter": "^0.22.4",
+    "tree-sitter-cli": "^0.24.6"
   }
 }

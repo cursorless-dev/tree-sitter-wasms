@@ -50,14 +50,14 @@ fs.mkdirSync(outDir);
 process.chdir(outDir);
 
 const grammars = Object.keys(packageInfo.devDependencies)
-  .filter((n) => n.startsWith("tree-sitter-") && n !== "tree-sitter-cli")
+  .filter((n) => n.startsWith("tree-sitter-") && n !== "tree-sitter-cli" && n !== "tree-sitter")
   .concat('@tree-sitter-grammars/tree-sitter-zig')
   .concat("@tlaplus/tree-sitter-tlaplus")
   .filter((s) => !langArg || s.includes(langArg));
 
 PromisePool.withConcurrency(os.cpus().length)
   .for(grammars)
-  .process(async (name) => {
+  .process(async (name : string) => {
     if (name == "tree-sitter-rescript") {
       await buildParserWASM(name, { generate: true });
     } else if (name == "tree-sitter-ocaml") {

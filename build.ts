@@ -21,14 +21,7 @@ async function buildParserWASM(
   { subPath, generate }: { subPath?: string; generate?: boolean } = {}
 ) {
   const label = subPath ? path.join(name, subPath) : name;
-  let cliPackagePath;
-  try {
-    cliPackagePath = findRoot(require.resolve("tree-sitter-cli"));
-  } catch(_) {
-    cliPackagePath = path.join(__dirname, "node_modules", "tree-sitter-cli");
-  }
-
-  let cliPath = path.join(cliPackagePath, "tree-sitter");
+  let cliPath = "pnpm tree-sitter"
   let generateCommand = cliPath.concat(" generate");
   let buildCommand = cliPath.concat(" build --wasm");
   
@@ -42,9 +35,9 @@ async function buildParserWASM(
     }
     const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
     if (generate) {
-      await exec(generateCommand, { cwd });
+      await exec("pnpm tree-sitter generate", { cwd });
     }
-    await exec(buildCommand, { cwd });
+    await exec("pnpm tree-sitter build --wasm", { cwd }); //TODO: add some way to toggle old build type syntax here?
     console.log(`✅ Finished building ${label}`);
   } catch (e) {
     console.error(`🔥 Failed to build ${label}:\n`, e);
@@ -74,6 +67,7 @@ TODO:
 - fix elixir (special case, see project README)
 - fix systemrdl (clones incorrectly, missing tree-sitter.json)
 - fix tlapus (clones incorrectly, missing tree-sitter.json)
+- fix hcl (outdated, needs old build-wasm syntax????)
 */
 const grammars = Object.keys(packageInfo.devDependencies)
   .filter((n) => n.startsWith("tree-sitter-") && n !== "tree-sitter-cli" && n !== "tree-sitter")

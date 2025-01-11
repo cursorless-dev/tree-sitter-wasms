@@ -21,6 +21,17 @@ async function buildParserWASM(
   { subPath, generate }: { subPath?: string; generate?: boolean } = {}
 ) {
   const label = subPath ? path.join(name, subPath) : name;
+  let cliPackagePath;
+  try {
+    cliPackagePath = findRoot(require.resolve("tree-sitter-cli"));
+  } catch(_) {
+    cliPackagePath = path.join(__dirname, "node_modules", "tree-sitter-cli");
+  }
+
+  let cliPath = path.join(cliPackagePath, "tree-sitter");
+  let generateCommand = cliPath.concat(" generate");
+  let buildCommand = cliPath.concat(" build --wasm");
+  
   try {
     console.log(`⏳ Building ${label}`);
     let packagePath;
@@ -31,9 +42,9 @@ async function buildParserWASM(
     }
     const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
     if (generate) {
-      await exec(`pnpm tree-sitter generate`, { cwd });
+      await exec(generateCommand, { cwd });
     }
-    await exec(`pnpm tree-sitter build-wasm ${cwd}`);
+    await exec(buildCommand, { cwd });
     console.log(`✅ Finished building ${label}`);
   } catch (e) {
     console.error(`🔥 Failed to build ${label}:\n`, e);
@@ -49,6 +60,21 @@ fs.mkdirSync(outDir);
 
 process.chdir(outDir);
 
+/*
+TODO:
+- fix agda (clones incorrectly, missing tree-sitter.json)
+- fix markdown (multiple grammars)
+- fix ocaml (contains multiple grammars... this project should probably support all of them)
+- fix perl (outright missing its parser c file?)
+- fix vue (might need a custom fork for this?)
+- fix xml (differing path)
+- fix latex (ENOINT spawn /bin/sh??? missing folder, presumably?)
+- fix query (clones incorrectly, missing tree-sitter.json)
+- fix solidity (clones incorrectly, missing tree-sitter.json)
+- fix elixir (special case, see project README)
+- fix systemrdl (clones incorrectly, missing tree-sitter.json)
+- fix tlapus (clones incorrectly, missing tree-sitter.json)
+*/
 const grammars = Object.keys(packageInfo.devDependencies)
   .filter((n) => n.startsWith("tree-sitter-") && n !== "tree-sitter-cli" && n !== "tree-sitter")
   .concat('@tree-sitter-grammars/tree-sitter-zig')

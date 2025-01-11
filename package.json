@@ -17,8 +17,7 @@
     "@types/find-root": "^1.1.4",
     "@types/node": "^20.11.17",
     "find-root": "^1.1.0",
-    "tree-sitter": "^0.22.4",
-    "tree-sitter-agda": "^1.3.1",
+    "tree-sitter-agda": "^1.3.3",
     "tree-sitter-bash": "^0.23.3",
     "tree-sitter-c": "^0.23.4",
     "tree-sitter-c-sharp": "^0.23.1",
@@ -42,7 +41,7 @@
     "tree-sitter-json": "^0.24.8",
     "tree-sitter-julia": "^0.23.1",
     "tree-sitter-kotlin": "^0.3.8",
-
+    "tree-sitter-latex": "github:latex-lsp/tree-sitter-latex#7b06f6ed394308e7407a1703d2724128c45fc9d7",
     "tree-sitter-lua": "^2.1.3",
     "tree-sitter-markdown": "github:tree-sitter-grammars/tree-sitter-markdown#192407ab5a24bfc24f13332979b5e7967518754a",
     "tree-sitter-nix": "github:nix-community/tree-sitter-nix#21897cc3dcd15325303e46b85295b743742af6ab",
@@ -66,14 +65,14 @@
     "tree-sitter-talon": "github:wenkokke/tree-sitter-talon#7119d7f3fefd0b0c7e900120b51f85a23e6c3160",
     "tree-sitter-typescript": "^0.23.2",
     "tree-sitter-vue": "github.com/ikatyang/tree-sitter-vue#efd20240618d5c1b03ad0d5eac341202196f282d",
-    "tree-sitter-xml": "github:ObserverOfTime/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",
+    "tree-sitter-xml": "github:tree-sitter-grammars/tree-sitter-xml#ce150c5be7f617e18ffa2064213e5d9c4cb5d69e",
     "ts-node": "^10.9.2",
     "typescript": "5.7.3"
   },
   "files": [
     "/out"
   ],
-  "packageManager": "pnpm@9.15.3",
+  "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",
   "dependencies": {
     "tree-sitter-wasms": "^0.1.11",

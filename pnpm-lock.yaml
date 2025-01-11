@@ -111,6 +111,9 @@ importers:
       tree-sitter-kotlin:
         specifier: ^0.3.8
         version: 0.3.8(tree-sitter@0.22.4)
+      tree-sitter-latex:
+        specifier: github:latex-lsp/tree-sitter-latex#7b06f6ed394308e7407a1703d2724128c45fc9d7
+        version: '@pfoerster/tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/7b06f6ed394308e7407a1703d2724128c45fc9d7(tree-sitter@0.22.4)'
       tree-sitter-lua:
         specifier: ^2.1.3
         version: 2.1.3
@@ -181,8 +184,8 @@ importers:
         specifier: github.com/ikatyang/tree-sitter-vue#efd20240618d5c1b03ad0d5eac341202196f282d
         version: link:github.com/ikatyang/tree-sitter-vue#efd20240618d5c1b03ad0d5eac341202196f282d
       tree-sitter-xml:
-        specifier: github:ObserverOfTime/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67
-        version: '@tree-sitter-grammars/tree-sitter-xml@git+https://github.com/ObserverOfTime/tree-sitter-xml.git#648183d86f6f8ffb240ea11b4c6873f6f45d8b67(tree-sitter@0.22.4)'
+        specifier: github:tree-sitter-grammars/tree-sitter-xml#ce150c5be7f617e18ffa2064213e5d9c4cb5d69e
+        version: '@tree-sitter-grammars/tree-sitter-xml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/ce150c5be7f617e18ffa2064213e5d9c4cb5d69e(tree-sitter@0.22.4)'
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.17.12)(typescript@5.7.3)
@@ -209,6 +212,16 @@ packages:
 
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
+
+  '@pfoerster/tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/7b06f6ed394308e7407a1703d2724128c45fc9d7':
+    resolution: {tarball: https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/7b06f6ed394308e7407a1703d2724128c45fc9d7}
+    version: 0.4.0
+    peerDependencies:
+      tree-sitter: ^0.21.1
+      tree_sitter: '*'
+    peerDependenciesMeta:
+      tree_sitter:
+        optional: true
 
   '@supercharge/promise-pool@3.2.0':
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
@@ -241,9 +254,9 @@ packages:
       tree-sitter:
         optional: true
 
-  '@tree-sitter-grammars/tree-sitter-xml@git+https://github.com/ObserverOfTime/tree-sitter-xml.git#648183d86f6f8ffb240ea11b4c6873f6f45d8b67':
-    resolution: {commit: 648183d86f6f8ffb240ea11b4c6873f6f45d8b67, repo: https://github.com/ObserverOfTime/tree-sitter-xml.git, type: git}
-    version: 0.6.3
+  '@tree-sitter-grammars/tree-sitter-xml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/ce150c5be7f617e18ffa2064213e5d9c4cb5d69e':
+    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/ce150c5be7f617e18ffa2064213e5d9c4cb5d69e}
+    version: 0.7.0
     peerDependencies:
       tree-sitter: ^0.21.1
       tree_sitter: '*'
@@ -728,6 +741,12 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
+  '@pfoerster/tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/7b06f6ed394308e7407a1703d2724128c45fc9d7(tree-sitter@0.22.4)':
+    dependencies:
+      node-addon-api: 8.3.0
+      node-gyp-build: 4.8.4
+      tree-sitter: 0.22.4
+
   '@supercharge/promise-pool@3.2.0': {}
 
   '@tlaplus/tree-sitter-tlaplus@1.5.0(tree-sitter-cli@0.24.6)':
@@ -749,7 +768,7 @@ snapshots:
     optionalDependencies:
       tree-sitter: 0.22.4
 
-  '@tree-sitter-grammars/tree-sitter-xml@git+https://github.com/ObserverOfTime/tree-sitter-xml.git#648183d86f6f8ffb240ea11b4c6873f6f45d8b67(tree-sitter@0.22.4)':
+  '@tree-sitter-grammars/tree-sitter-xml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/ce150c5be7f617e18ffa2064213e5d9c4cb5d69e(tree-sitter@0.22.4)':
     dependencies:
       node-addon-api: 8.3.0
       node-gyp-build: 4.8.4

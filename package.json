@@ -73,7 +73,7 @@
   "files": [
     "/out"
   ],
-  "packageManager": "pnpm@10.0.0",
+  "packageManager": "pnpm@9.15.3",
   "main": "bindings/node",
   "dependencies": {
     "tree-sitter-wasms": "^0.1.11",

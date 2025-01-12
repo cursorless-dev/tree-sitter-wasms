@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 20
           cache: "pnpm"
-      - run: pnpm install
+      - run: pnpm install --shamefully-hoist
 
       - uses: mymindstorm/setup-emsdk@v14
         with:

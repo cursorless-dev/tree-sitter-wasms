@@ -16,10 +16,35 @@ const outDir = path.join(__dirname, "out");
 
 let hasErrors = false;
 
+async function gitCloneOverload(name: string, repoUrl: string, useLatest: boolean, {commitHash}: {commitHash?: string}) {
+  let packagePath;
+  try {
+    packagePath = findRoot(require.resolve(name));
+  } catch (_) {
+    packagePath = path.join(__dirname, "node_modules", name);
+  }
+  try {
+    console.log(`🗑️  Deleting cached node dep for ${ name }...`);
+    await exec(`rm -rf ${ packagePath }`)
+    console.log(`⬇️  Cloning ${ name } from git...`);
+    await exec(`git clone ${ repoUrl } ${ packagePath }`)
+    if (!useLatest) {
+      if (commitHash !== undefined) {
+        process.chdir(packagePath);
+        await exec(`git reset --hard ${commitHash}`);
+      } else throw new Error("Latest commit is not being used, yet no commit hash was specified");
+    }
+  } catch (err) {
+      console.error(`❗Failed to clone git repo for ${ name }:\n`, err);
+  }
+}
+
 async function buildParserWASM(
   name: string,
-  { subPath, generate }: { subPath?: string; generate?: boolean } = {}
+  { subPath, generate, missingTSJsonURL }: 
+  { subPath?: string; generate?: boolean; missingTSJsonURL?: string } = {}
 ) {
+
   const label = subPath ? path.join(name, subPath) : name;
   
   let cliPackagePath;
@@ -40,6 +65,24 @@ async function buildParserWASM(
       packagePath = findRoot(require.resolve(name));
     } catch (_) {
       packagePath = path.join(__dirname, "node_modules", name);
+    }
+    if (missingTSJsonURL !== undefined) {
+      //clone missing tree-sitter.json file into the package path dir
+      try {
+        const res = await fetch(missingTSJsonURL);
+        if (res.ok && res.body) {
+          const jsonPath = path.join(packagePath, "tree-sitter.json")
+          const json = await res.text();
+          fs.writeFile(jsonPath, json, (err) => {
+            if (err) {
+              throw err
+            }
+          });
+        }
+        console.log(`📝 Fetched missing tree-sitter.json for ${label}`)
+      } catch (e) {
+        console.error(`❗ Failed to fetch missing tree-sitter.json for ${label}:\n`, e);
+      }
     }
     const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
     if (generate) {
@@ -64,38 +107,41 @@ process.chdir(outDir);
 /*
 TODO:
 - fix agda (clones incorrectly, missing tree-sitter.json)
-- fix markdown (multiple grammars)
-- fix ocaml (contains multiple grammars... this project should probably support all of them)
-- fix perl (outright missing its parser c file?)
-- fix vue (might need a custom fork for this?)
-- fix xml (differing path)
-- fix latex (ENOINT spawn /bin/sh??? missing folder, presumably?)
-- fix query (clones incorrectly, missing tree-sitter.json)
-- fix solidity (clones incorrectly, missing tree-sitter.json)
-- fix elixir (special case, see project README)
-- fix systemrdl (clones incorrectly, missing tree-sitter.json)
-- fix tlapus (clones incorrectly, missing tree-sitter.json)
-- fix hcl (outdated, needs old build-wasm syntax????)
 */
 const grammars = Object.keys(packageInfo.devDependencies)
   .filter((n) => n.startsWith("tree-sitter-") && n !== "tree-sitter-cli" && n !== "tree-sitter")
-  .concat('@tree-sitter-grammars/tree-sitter-zig')
-  .concat("@tlaplus/tree-sitter-tlaplus")
   .filter((s) => !langArg || s.includes(langArg));
 
 PromisePool.withConcurrency(os.cpus().length)
   .for(grammars)
   .process(async (name : string) => {
-    if (name == "tree-sitter-rescript") {
-      await buildParserWASM(name, { generate: true });
-    } else if (name == "tree-sitter-ocaml") {
-      await buildParserWASM(name, { subPath: "ocaml" });
+    if (name == "tree-sitter-agda") {
+      await gitCloneOverload(name, "https://github.com/tree-sitter/tree-sitter-agda.git", true, {});
+      await buildParserWASM(name)
+    } else if (name == "tree-sitter-perl") {
+      await gitCloneOverload(name, "https://github.com/tree-sitter-perl/tree-sitter-perl.git", true, {});
+      await buildParserWASM(name, {generate: true});
     } else if (name == "tree-sitter-php") {
       await buildParserWASM(name, { subPath: "php" });
     } else if (name == "tree-sitter-typescript") {
       await buildParserWASM(name, { subPath: "typescript" });
       await buildParserWASM(name, { subPath: "tsx" });
-    } else {
+    } else if (name == "tree-sitter-latex") {
+      await buildParserWASM(name, {generate: true});
+    } else if (name == "tree-sitter-xml") {
+      await buildParserWASM(name, {subPath: "xml"});
+      await buildParserWASM(name, {subPath: "dtd"});
+    } else if (name == "tree-sitter-query") {
+      await buildParserWASM(name, {missingTSJsonURL: "https://raw.githubusercontent.com/tree-sitter-grammars/tree-sitter-query/refs/heads/master/tree-sitter.json"})
+    } else if (name == "tree-sitter-elixir") {
+      await gitCloneOverload(name, "https://github.com/elixir-lang/tree-sitter-elixir.git", true, {});
+      await buildParserWASM(name);
+    } else if (name == "tree-sitter-markdown") {
+      await gitCloneOverload(name, "https://github.com/tree-sitter-grammars/tree-sitter-markdown", true, {});
+      await buildParserWASM(name, {subPath: "tree-sitter-markdown"});
+      await buildParserWASM(name, {subPath: "tree-sitter-markdown-inline"});
+    }
+    else {
       await buildParserWASM(name);
     }
   })

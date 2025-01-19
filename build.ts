@@ -129,7 +129,7 @@ PromisePool.withConcurrency(os.cpus().length)
       await buildParserWASM(name, {subPath: "xml"});
       await buildParserWASM(name, {subPath: "dtd"});
     } else if (name == "tree-sitter-query") {
-      await buildParserWASM(name, {missingTSJsonURL: "https://raw.githubusercontent.com/tree-sitter-grammars/tree-sitter-query/refs/heads/master/tree-sitter.json"})
+      await buildParserWASM(name, {missingTSJsonURL: "https://raw.githubusercontent.com/tree-sitter-grammars/tree-sitter-query/9edc915489122feedf051b7541e318ccc9c7bb21/tree-sitter.json"})
     } else if (name == "tree-sitter-elixir") {
       await gitCloneOverload(name, "https://github.com/elixir-lang/tree-sitter-elixir.git", true, {});
       await buildParserWASM(name);

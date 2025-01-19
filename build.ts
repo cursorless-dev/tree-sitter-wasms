@@ -41,8 +41,8 @@ async function gitCloneOverload(name: string, repoUrl: string, useLatest: boolea
 
 async function buildParserWASM(
   name: string,
-  { subPath, generate, missingTSJsonURL }: 
-  { subPath?: string; generate?: boolean; missingTSJsonURL?: string } = {}
+  { subPath, generate }: 
+  { subPath?: string; generate?: boolean } = {}
 ) {
 
   const label = subPath ? path.join(name, subPath) : name;
@@ -65,24 +65,6 @@ async function buildParserWASM(
       packagePath = findRoot(require.resolve(name));
     } catch (_) {
       packagePath = path.join(__dirname, "node_modules", name);
-    }
-    if (missingTSJsonURL !== undefined) {
-      //clone missing tree-sitter.json file into the package path dir
-      try {
-        const res = await fetch(missingTSJsonURL);
-        if (res.ok && res.body) {
-          const jsonPath = path.join(packagePath, "tree-sitter.json")
-          const json = await res.text();
-          fs.writeFile(jsonPath, json, (err) => {
-            if (err) {
-              throw err
-            }
-          });
-        }
-        console.log(`📝 Fetched missing tree-sitter.json for ${label}`)
-      } catch (e) {
-        console.error(`❗ Failed to fetch missing tree-sitter.json for ${label}:\n`, e);
-      }
     }
     const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
     if (generate) {

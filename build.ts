@@ -88,7 +88,8 @@ async function buildParserWASM(
     if (generate) {
       await exec(generateCommand, { cwd });
     }
-    await exec(buildCommand, { cwd }); //TODO: add some way to toggle old build type syntax here?
+    await exec(buildCommand, { cwd }); 
+    await exec(`mv *.wasm ${outDir}`, { cwd });
     console.log(`✅ Finished building ${label}`);
   } catch (e) {
     console.error(`🔥 Failed to build ${label}:\n`, e);
@@ -104,10 +105,6 @@ fs.mkdirSync(outDir);
 
 process.chdir(outDir);
 
-/*
-TODO:
-- fix agda (clones incorrectly, missing tree-sitter.json)
-*/
 const grammars = Object.keys(packageInfo.devDependencies)
   .filter((n) => n.startsWith("tree-sitter-") && n !== "tree-sitter-cli" && n !== "tree-sitter")
   .filter((s) => !langArg || s.includes(langArg));
@@ -147,7 +144,9 @@ PromisePool.withConcurrency(os.cpus().length)
   })
   .then(async () => {
     if (hasErrors) {
+      //not sure if this failsafe is actually required, but it doesn't hurt to ensure that no wasms can be published from a failed build 
+      fs.rmSync(outDir, { recursive: true, force: true });
+      fs.mkdirSync(outDir);
       process.exit(1);
     }
-    await exec(`mv *.wasm ${outDir}`, { cwd: __dirname });
   });

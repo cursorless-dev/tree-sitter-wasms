@@ -26,13 +26,5 @@ jobs:
             - name: Install dependencies
               run: pnpm --color install
 
-            - name: Setup Emscripten
-              uses: mymindstorm/setup-emsdk@v14
-              with:
-                  version: 3.1.74
-
             - name: Build
               run: pnpm build
-
-            - name: Dry publish to npm
-              run: npm publish --dry-run

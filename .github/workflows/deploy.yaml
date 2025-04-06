@@ -1,4 +1,5 @@
 name: Deploy
+permissions: read-all
 
 on:
   push:

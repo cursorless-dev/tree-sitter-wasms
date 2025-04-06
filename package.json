@@ -2,7 +2,10 @@
   "name": "@cursorless/tree-sitter-wasms",
   "version": "0.2.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
-  "repository": "https://github.com/cursorless-dev/tree-sitter-wasms",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
+  },
   "author": "Gregor <gregorwbr@gmail.com>, Menci <huanghaorui301@gmail.com>, rinOfTheStars",
   "license": "Unlicense",
   "scripts": {
@@ -48,7 +51,7 @@
     "tree-sitter-rust": "^0.23.2",
     "tree-sitter-scala": "^0.23.4",
     "tree-sitter-scss": "github:tree-sitter-grammars/tree-sitter-scss#00a4cd98d5fc71aa5a55174e7ed5e34c9cc85a87",
-    "tree-sitter-sparql": "github:IoannisNezis/tree-sitter-sparql#3c468620e7c2ffa69441de60161c4e4a919969f7",   
+    "tree-sitter-sparql": "github:IoannisNezis/tree-sitter-sparql#3c468620e7c2ffa69441de60161c4e4a919969f7",
     "tree-sitter-swift": "^0.6.0",
     "tree-sitter-talon": "github:wenkokke/tree-sitter-talon#7119d7f3fefd0b0c7e900120b51f85a23e6c3160",
     "tree-sitter-typescript": "^0.23.2",
@@ -58,7 +61,7 @@
   },
   "pnpm": {
     "onlyBuiltDependencies": [
-        "tree-sitter-cli"
+      "tree-sitter-cli"
     ]
   },
   "files": [

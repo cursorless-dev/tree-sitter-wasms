@@ -31,7 +31,7 @@ jobs:
         run: pnpm build
 
       - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
+        uses: JS-DevTools/npm-publish@v3
         with:
           access: public
           token: ${{ secrets.NPM_TOKEN }}

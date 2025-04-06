@@ -33,3 +33,6 @@ jobs:
 
             - name: Build
               run: pnpm build
+
+            - name: Dry publish to npm
+              run: npm publish --dry-run

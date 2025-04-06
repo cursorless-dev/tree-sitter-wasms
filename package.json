@@ -1,15 +1,25 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.2.0",
+  "version": "0.1.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
-  },
+  "packageManager": "pnpm@10.0.0",
+  "main": "bindings/node",
   "author": "Cursorless Dev",
   "license": "Unlicense",
   "scripts": {
     "build": "ts-node build.ts"
+  },
+  "files": [
+    "/out"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "tree-sitter-cli"
+    ]
   },
   "devDependencies": {
     "@supercharge/promise-pool": "^3.1.1",
@@ -59,16 +69,6 @@
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "tree-sitter-cli"
-    ]
-  },
-  "files": [
-    "/out"
-  ],
-  "packageManager": "pnpm@10.0.0",
-  "main": "bindings/node",
   "dependencies": {
     "tree-sitter": "^0.22.4",
     "tree-sitter-cli": "^0.24.7"

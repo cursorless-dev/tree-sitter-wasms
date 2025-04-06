@@ -6,9 +6,6 @@
   "main": "bindings/node",
   "author": "Cursorless Dev",
   "license": "Unlicense",
-  "scripts": {
-    "build": "ts-node build.ts"
-  },
   "files": [
     "/out"
   ],
@@ -20,6 +17,9 @@
     "onlyBuiltDependencies": [
       "tree-sitter-cli"
     ]
+  },
+  "scripts": {
+    "build": "ts-node build.ts"
   },
   "devDependencies": {
     "@supercharge/promise-pool": "^3.1.1",

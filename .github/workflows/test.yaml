@@ -1,12 +1,13 @@
-name: Deploy
+name: Run Tests
+permissions: read-all
 
 on:
-    push:
-        branches: [main]
+    pull_request:
+        types: [opened, synchronize, reopened]
 
 jobs:
-    publish-npm:
-        name: Publish to NPM
+    test:
+        name: Test
         runs-on: ubuntu-latest
 
         steps:
@@ -32,8 +33,3 @@ jobs:
 
             - name: Build
               run: pnpm build
-
-            - name: Publish to NPM
-              uses: JS-DevTools/npm-publish@v1
-              with:
-                  token: ${{ secrets.NPM_TOKEN }}

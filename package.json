@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
   },
-  "author": "Gregor <gregorwbr@gmail.com>, Menci <huanghaorui301@gmail.com>, rinOfTheStars",
+  "author": "Cursorless Dev",
   "license": "Unlicense",
   "scripts": {
     "build": "ts-node build.ts"

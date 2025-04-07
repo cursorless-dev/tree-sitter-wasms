@@ -91,8 +91,8 @@ importers:
         specifier: github:latex-lsp/tree-sitter-latex#1666e9780de42a31b1376d32fbe8332e8dd5850f
         version: https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/1666e9780de42a31b1376d32fbe8332e8dd5850f
       tree-sitter-lua:
-        specifier: github:MunifTanjim/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1
-        version: '@muniftanjim/tree-sitter-lua@git+https://git@github.com:MunifTanjim/tree-sitter-lua.git#9668709211b2e683f27f414454a8b51bf0a6bda1'
+        specifier: github:tree-sitter-grammars/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1
+        version: '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1'
       tree-sitter-markdown:
         specifier: github:tree-sitter-grammars/tree-sitter-markdown#7fe453beacecf02c86f7736439f238f5bb8b5c9b
         version: '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/7fe453beacecf02c86f7736439f238f5bb8b5c9b(tree-sitter@0.22.4)'
@@ -172,8 +172,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.9':
     resolution: {integrity: sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ==}
 
-  '@muniftanjim/tree-sitter-lua@git+https://git@github.com:MunifTanjim/tree-sitter-lua.git#9668709211b2e683f27f414454a8b51bf0a6bda1':
-    resolution: {commit: 9668709211b2e683f27f414454a8b51bf0a6bda1, repo: git@github.com:MunifTanjim/tree-sitter-lua.git, type: git}
+  '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1':
+    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1}
     version: 0.0.19
 
   '@supercharge/promise-pool@3.2.0':
@@ -566,7 +566,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.0
 
-  '@muniftanjim/tree-sitter-lua@git+https://git@github.com:MunifTanjim/tree-sitter-lua.git#9668709211b2e683f27f414454a8b51bf0a6bda1':
+  '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1':
     dependencies:
       nan: 2.22.0
 

@@ -47,7 +47,7 @@
     "tree-sitter-julia": "github:tree-sitter/tree-sitter-julia#e2f449e2bcc95f1d07ceb62d67f986005f73a6be",
     "tree-sitter-kotlin": "github:fwcd/tree-sitter-kotlin#76f53c48d29e8588934fb55b0240d7bdfe00bfe5",
     "tree-sitter-latex": "github:latex-lsp/tree-sitter-latex#1666e9780de42a31b1376d32fbe8332e8dd5850f",
-    "tree-sitter-lua": "github:MunifTanjim/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1",
+    "tree-sitter-lua": "github:tree-sitter-grammars/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1",
     "tree-sitter-markdown": "github:tree-sitter-grammars/tree-sitter-markdown#7fe453beacecf02c86f7736439f238f5bb8b5c9b",
     "tree-sitter-nix": "github:nix-community/tree-sitter-nix#66e3e9ce9180ae08fc57372061006ef83f0abde7",
     "tree-sitter-perl": "github:ganezdragon/tree-sitter-perl#3d3a95ee6645d7bcd993e77b252ffd33fd297c8e",

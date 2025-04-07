@@ -159,6 +159,8 @@ PromisePool.withConcurrency(os.cpus().length)
       );
       await buildParserWASM(name, { subPath: "tree-sitter-markdown" });
       await buildParserWASM(name, { subPath: "tree-sitter-markdown-inline" });
+    } else if (name === "tree-sitter-swift") {
+      await buildParserWASM(name, { generate: true });
     } else {
       await buildParserWASM(name);
     }

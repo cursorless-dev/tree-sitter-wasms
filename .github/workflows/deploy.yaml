@@ -2,8 +2,7 @@ name: Deploy
 permissions: read-all
 
 on:
-  push:
-    branches: [main]
+  workflow_dispatch:
 
 jobs:
   publish-npm:

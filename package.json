@@ -39,7 +39,7 @@
     "tree-sitter-gleam": "github:gleam-lang/tree-sitter-gleam#2012f294baacf30e7a62414754021284377366c6",
     "tree-sitter-go": "github:tree-sitter/tree-sitter-go#bbaa67a180cfe0c943e50c55130918be8efb20bd",
     "tree-sitter-haskell": "github:tree-sitter/tree-sitter-haskell#a50070d5bb5bd5c1281740a6102ecf1f4b0c4f19",
-    "tree-sitter-hcl": "github:MichaHoffmann/tree-sitter-hcl#e135399cb31b95fac0760b094556d1d5ce84acf0",
+    "tree-sitter-hcl": "github:MichaHoffmann/tree-sitter-hcl#422cbe1d93a8ae3847744b664041fc76876babcd",
     "tree-sitter-html": "github:tree-sitter/tree-sitter-html#e4d834eb4918df01dcad5c27d1b15d56e3bd94cd",
     "tree-sitter-java": "github:tree-sitter/tree-sitter-java#ac14b4b1884102839455d32543ab6d53ae089ab7",
     "tree-sitter-javascript": "github:tree-sitter/tree-sitter-javascript#391a8fcc48a11f63bf18ec9885f6f069e760949a",

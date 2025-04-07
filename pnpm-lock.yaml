@@ -124,8 +124,8 @@ importers:
         specifier: ^0.1.0
         version: 0.1.0
       tree-sitter-swift:
-        specifier: github:alex-pinkus/tree-sitter-swift#c20186b9f4436b2ed444f97b08ebab88b46b21f8
-        version: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/c20186b9f4436b2ed444f97b08ebab88b46b21f8(tree-sitter@0.22.4)
+        specifier: github:alex-pinkus/tree-sitter-swift#aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9
+        version: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9(tree-sitter@0.22.4)
       tree-sitter-talon:
         specifier: github:pokey/tree-sitter-talon#f69923ea2490530babe105f0a36434e4a23e127e
         version: https://codeload.github.com/pokey/tree-sitter-talon/tar.gz/f69923ea2490530babe105f0a36434e4a23e127e(tree-sitter@0.22.4)
@@ -475,8 +475,8 @@ packages:
   tree-sitter-sparql@0.1.0:
     resolution: {integrity: sha512-qtNTPef7zCyrmxuhpI8dtppzEYR2A6XtyPUqJeqTr2soZLLqUacWXezkFFhMNrvyMUknN9Fgua9EEpt1/lG/Zw==}
 
-  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/c20186b9f4436b2ed444f97b08ebab88b46b21f8:
-    resolution: {tarball: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/c20186b9f4436b2ed444f97b08ebab88b46b21f8}
+  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9:
+    resolution: {tarball: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9}
     version: 0.7.0
     peerDependencies:
       tree-sitter: ^0.22.1
@@ -775,7 +775,7 @@ snapshots:
     dependencies:
       nan: 2.22.0
 
-  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/c20186b9f4436b2ed444f97b08ebab88b46b21f8(tree-sitter@0.22.4):
+  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/aca5a52aa3cab858944d3c02701ccf5b2d8fd0f9(tree-sitter@0.22.4):
     dependencies:
       node-addon-api: 8.3.0
       node-gyp-build: 4.8.4

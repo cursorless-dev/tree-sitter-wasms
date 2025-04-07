@@ -136,8 +136,8 @@ importers:
         specifier: github:tree-sitter/tree-sitter-typescript#4ad3010c91d700026d036b5230e2d99ba94ae8a4
         version: https://codeload.github.com/tree-sitter/tree-sitter-typescript/tar.gz/4ad3010c91d700026d036b5230e2d99ba94ae8a4(tree-sitter@0.22.4)
       tree-sitter-xml:
-        specifier: github:ObserverOfTime/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67
-        version: '@tree-sitter-grammars/tree-sitter-xml@git+https://git@github.com:ObserverOfTime/tree-sitter-xml.git#648183d86f6f8ffb240ea11b4c6873f6f45d8b67(tree-sitter@0.22.4)'
+        specifier: github:tree-sitter-grammars/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67
+        version: '@tree-sitter-grammars/tree-sitter-xml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/648183d86f6f8ffb240ea11b4c6873f6f45d8b67(tree-sitter@0.22.4)'
       tree-sitter-yaml:
         specifier: github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267
         version: '@tree-sitter-grammars/tree-sitter-yaml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-yaml/tar.gz/7b03feefd36b5f155465ca736c6304aca983b267(tree-sitter@0.22.4)'
@@ -190,8 +190,8 @@ packages:
       tree_sitter:
         optional: true
 
-  '@tree-sitter-grammars/tree-sitter-xml@git+https://git@github.com:ObserverOfTime/tree-sitter-xml.git#648183d86f6f8ffb240ea11b4c6873f6f45d8b67':
-    resolution: {commit: 648183d86f6f8ffb240ea11b4c6873f6f45d8b67, repo: git@github.com:ObserverOfTime/tree-sitter-xml.git, type: git}
+  '@tree-sitter-grammars/tree-sitter-xml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/648183d86f6f8ffb240ea11b4c6873f6f45d8b67':
+    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/648183d86f6f8ffb240ea11b4c6873f6f45d8b67}
     version: 0.6.3
     peerDependencies:
       tree-sitter: ^0.21.1
@@ -578,7 +578,7 @@ snapshots:
       node-gyp-build: 4.8.4
       tree-sitter: 0.22.4
 
-  '@tree-sitter-grammars/tree-sitter-xml@git+https://git@github.com:ObserverOfTime/tree-sitter-xml.git#648183d86f6f8ffb240ea11b4c6873f6f45d8b67(tree-sitter@0.22.4)':
+  '@tree-sitter-grammars/tree-sitter-xml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-xml/tar.gz/648183d86f6f8ffb240ea11b4c6873f6f45d8b67(tree-sitter@0.22.4)':
     dependencies:
       node-addon-api: 8.3.0
       node-gyp-build: 4.8.4

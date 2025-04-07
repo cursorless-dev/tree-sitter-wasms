@@ -109,8 +109,8 @@ importers:
         specifier: github:tree-sitter/tree-sitter-python#71778c2a472ed00a64abf4219544edbf8e4b86d7
         version: https://codeload.github.com/tree-sitter/tree-sitter-python/tar.gz/71778c2a472ed00a64abf4219544edbf8e4b86d7(tree-sitter@0.22.4)
       tree-sitter-query:
-        specifier: github:nvim-treesitter/tree-sitter-query#5217c6805c09f8fc00ed13d17d5fcb791437aee6
-        version: git+https://git@github.com:nvim-treesitter/tree-sitter-query.git#5217c6805c09f8fc00ed13d17d5fcb791437aee6
+        specifier: github:tree-sitter-grammars/tree-sitter-query#5217c6805c09f8fc00ed13d17d5fcb791437aee6
+        version: https://codeload.github.com/tree-sitter-grammars/tree-sitter-query/tar.gz/5217c6805c09f8fc00ed13d17d5fcb791437aee6
       tree-sitter-ruby:
         specifier: github:tree-sitter/tree-sitter-ruby#dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b
         version: https://codeload.github.com/tree-sitter/tree-sitter-ruby/tar.gz/dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b(tree-sitter@0.22.4)
@@ -452,8 +452,8 @@ packages:
       tree_sitter:
         optional: true
 
-  tree-sitter-query@git+https://git@github.com:nvim-treesitter/tree-sitter-query.git#5217c6805c09f8fc00ed13d17d5fcb791437aee6:
-    resolution: {commit: 5217c6805c09f8fc00ed13d17d5fcb791437aee6, repo: git@github.com:nvim-treesitter/tree-sitter-query.git, type: git}
+  tree-sitter-query@https://codeload.github.com/tree-sitter-grammars/tree-sitter-query/tar.gz/5217c6805c09f8fc00ed13d17d5fcb791437aee6:
+    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-query/tar.gz/5217c6805c09f8fc00ed13d17d5fcb791437aee6}
     version: 1.0.0
 
   tree-sitter-ruby@https://codeload.github.com/tree-sitter/tree-sitter-ruby/tar.gz/dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b:
@@ -757,7 +757,7 @@ snapshots:
       node-gyp-build: 4.8.4
       tree-sitter: 0.22.4
 
-  tree-sitter-query@git+https://git@github.com:nvim-treesitter/tree-sitter-query.git#5217c6805c09f8fc00ed13d17d5fcb791437aee6:
+  tree-sitter-query@https://codeload.github.com/tree-sitter-grammars/tree-sitter-query/tar.gz/5217c6805c09f8fc00ed13d17d5fcb791437aee6:
     dependencies:
       nan: 2.22.0
 

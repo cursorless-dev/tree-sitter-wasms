@@ -53,7 +53,8 @@ function buildParserWASMS() {
   const grammars = Object.keys(packageInfo.devDependencies)
     .filter(
       (n) =>
-        n.startsWith("tree-sitter-") &&
+        (n.startsWith("tree-sitter-") ||
+          n === "@elm-tooling/tree-sitter-elm") &&
         n !== "tree-sitter-cli" &&
         n !== "tree-sitter"
     )

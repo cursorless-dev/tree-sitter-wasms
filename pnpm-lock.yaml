@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@elm-tooling/tree-sitter-elm':
-        specifier: github:elm-tooling/tree-sitter-elm#0aecfbf69f0c9bcdfada0f6f2c5398235c23949f
-        version: https://codeload.github.com/elm-tooling/tree-sitter-elm/tar.gz/0aecfbf69f0c9bcdfada0f6f2c5398235c23949f
+        specifier: ^5.7.0
+        version: 5.8.0(tree-sitter@0.21.1)
       '@supercharge/promise-pool':
         specifier: ^3.1.1
         version: 3.2.0
@@ -150,9 +150,13 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@elm-tooling/tree-sitter-elm@https://codeload.github.com/elm-tooling/tree-sitter-elm/tar.gz/0aecfbf69f0c9bcdfada0f6f2c5398235c23949f':
-    resolution: {tarball: https://codeload.github.com/elm-tooling/tree-sitter-elm/tar.gz/0aecfbf69f0c9bcdfada0f6f2c5398235c23949f}
-    version: 5.6.1
+  '@elm-tooling/tree-sitter-elm@5.8.0':
+    resolution: {integrity: sha512-AOCJlUumWqetQxXkRf3ZpztbTNeyBB2NfuOKokZgLSF7TboctgOCpR7MMrJk9/uGn8rPbcg1gOyhZOQBl1MOpQ==}
+    peerDependencies:
+      tree-sitter: ^0.21.1
+    peerDependenciesMeta:
+      tree-sitter:
+        optional: true
 
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
@@ -546,9 +550,12 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@elm-tooling/tree-sitter-elm@https://codeload.github.com/elm-tooling/tree-sitter-elm/tar.gz/0aecfbf69f0c9bcdfada0f6f2c5398235c23949f':
+  '@elm-tooling/tree-sitter-elm@5.8.0(tree-sitter@0.21.1)':
     dependencies:
-      nan: 2.22.0
+      node-addon-api: 8.3.0
+      node-gyp-build: 4.8.4
+    optionalDependencies:
+      tree-sitter: 0.21.1
 
   '@jridgewell/resolve-uri@3.1.2': {}
 

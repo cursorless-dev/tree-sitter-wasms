@@ -75,9 +75,13 @@ function buildParserWASMS() {
           await buildParserWASM(name, { subPath: "dtd" });
           break;
         case "tree-sitter-markdown":
-          await buildParserWASM(name, { subPath: "tree-sitter-markdown" });
+          await buildParserWASM(name, {
+            subPath: "tree-sitter-markdown",
+            generate: true,
+          });
           await buildParserWASM(name, {
             subPath: "tree-sitter-markdown-inline",
+            generate: true,
           });
           break;
         case "tree-sitter-perl":

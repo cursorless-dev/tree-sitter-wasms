@@ -24,7 +24,7 @@ async function gitCloneOverload(name: ParserName) {
   const value = packageInfo.devDependencies[name];
   const match = value.match(/^github:(\S+)#(\S+)$/);
 
-  if (match == null || match.length < 3) {
+  if (match == null) {
     console.error(`❗ Failed to parse git repo for ${name}:\n`, value);
     hasErrors = true;
     return;

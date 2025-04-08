@@ -83,7 +83,50 @@ async function buildParserWASM(
   }
 }
 
-async function buildParserWASMS() {
+async function processParser(name: ParserName) {
+  switch (name) {
+    case "tree-sitter-php":
+      await buildParserWASM(name, { subPath: "php" });
+      break;
+
+    case "tree-sitter-typescript":
+      await buildParserWASM(name, { subPath: "typescript" });
+      await buildParserWASM(name, { subPath: "tsx" });
+      break;
+
+    case "tree-sitter-xml":
+      await buildParserWASM(name, { subPath: "xml" });
+      await buildParserWASM(name, { subPath: "dtd" });
+      break;
+
+    case "tree-sitter-markdown":
+      await gitCloneOverload(name);
+      await buildParserWASM(name, {
+        subPath: "tree-sitter-markdown",
+      });
+      await buildParserWASM(name, {
+        subPath: "tree-sitter-markdown-inline",
+      });
+      break;
+
+    case "tree-sitter-elixir":
+    case "tree-sitter-perl":
+    case "tree-sitter-query":
+      await gitCloneOverload(name);
+      await buildParserWASM(name, { generate: true });
+      break;
+
+    case "tree-sitter-latex":
+    case "tree-sitter-swift":
+      await buildParserWASM(name, { generate: true });
+      break;
+
+    default:
+      await buildParserWASM(name);
+  }
+}
+
+async function run() {
   const grammars = Object.keys(packageInfo.devDependencies).filter(
     (n) =>
       (n.startsWith("tree-sitter-") &&
@@ -98,46 +141,7 @@ async function buildParserWASMS() {
     .for(grammars)
     .process(async (name: ParserName) => {
       try {
-        switch (name) {
-          case "tree-sitter-php":
-            await buildParserWASM(name, { subPath: "php" });
-            break;
-
-          case "tree-sitter-typescript":
-            await buildParserWASM(name, { subPath: "typescript" });
-            await buildParserWASM(name, { subPath: "tsx" });
-            break;
-
-          case "tree-sitter-xml":
-            await buildParserWASM(name, { subPath: "xml" });
-            await buildParserWASM(name, { subPath: "dtd" });
-            break;
-
-          case "tree-sitter-markdown":
-            await gitCloneOverload(name);
-            await buildParserWASM(name, {
-              subPath: "tree-sitter-markdown",
-            });
-            await buildParserWASM(name, {
-              subPath: "tree-sitter-markdown-inline",
-            });
-            break;
-
-          case "tree-sitter-elixir":
-          case "tree-sitter-perl":
-          case "tree-sitter-query":
-            // await gitCloneOverload(name);
-            await buildParserWASM(name, { generate: true });
-            break;
-
-          case "tree-sitter-latex":
-          case "tree-sitter-swift":
-            await buildParserWASM(name, { generate: true });
-            break;
-
-          default:
-            await buildParserWASM(name);
-        }
+        await processParser(name);
       } catch (e) {
         if (e instanceof ParserError) {
           console.error(e.message + ":\n", e.value);
@@ -149,13 +153,13 @@ async function buildParserWASMS() {
     });
 
   if (hasErrors) {
-    throw new Error("Failed to build some parsers");
+    throw new Error();
   }
 }
 
 fs.mkdirSync(outDir);
 process.chdir(outDir);
 
-buildParserWASMS().catch(() => {
+run().catch(() => {
   process.exit(1);
 });

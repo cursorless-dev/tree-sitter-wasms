@@ -54,8 +54,8 @@ importers:
         specifier: github:UserNobody14/tree-sitter-dart#9ac03bb2154316624fb4c41fe0f372a5f1597b43
         version: https://codeload.github.com/UserNobody14/tree-sitter-dart/tar.gz/9ac03bb2154316624fb4c41fe0f372a5f1597b43(tree-sitter@0.21.1)
       tree-sitter-elixir:
-        specifier: ^0.3.4
-        version: 0.3.4(tree-sitter@0.21.1)
+        specifier: github:elixir-lang/tree-sitter-elixir#02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e
+        version: https://codeload.github.com/elixir-lang/tree-sitter-elixir/tar.gz/02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e(tree-sitter@0.21.1)
       tree-sitter-gleam:
         specifier: github:gleam-lang/tree-sitter-gleam#2012f294baacf30e7a62414754021284377366c6
         version: https://codeload.github.com/gleam-lang/tree-sitter-gleam/tar.gz/2012f294baacf30e7a62414754021284377366c6
@@ -342,8 +342,9 @@ packages:
       tree_sitter:
         optional: true
 
-  tree-sitter-elixir@0.3.4:
-    resolution: {integrity: sha512-Bmaza0305xlrv9o4K+Piqd+pdgoAZp5cDIM2EURsmv0znFEXrXCcRoGOw2q6SsDdX8e6WI43+sQ2ye4xnXASBA==}
+  tree-sitter-elixir@https://codeload.github.com/elixir-lang/tree-sitter-elixir/tar.gz/02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e:
+    resolution: {tarball: https://codeload.github.com/elixir-lang/tree-sitter-elixir/tar.gz/02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e}
+    version: 0.3.3
     peerDependencies:
       tree-sitter: ^0.21.0
 
@@ -678,7 +679,7 @@ snapshots:
       node-gyp-build: 4.8.4
       tree-sitter: 0.21.1
 
-  tree-sitter-elixir@0.3.4(tree-sitter@0.21.1):
+  tree-sitter-elixir@https://codeload.github.com/elixir-lang/tree-sitter-elixir/tar.gz/02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e(tree-sitter@0.21.1):
     dependencies:
       node-addon-api: 7.1.1
       node-gyp-build: 4.8.4

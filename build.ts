@@ -32,28 +32,24 @@ async function gitCloneOverload(
   console.log(match);
   console.log("##########");
 
-  //   "https://github.com/tree-sitter/tree-sitter-agda.git",
-  // github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4
+  if (match == null || match.length < 3) {
+    console.log(`❗ Failed to parse git repo for ${name}:\n`, value);
+    hasErrors = true;
+    return;
+  }
 
-  //   let commitInfo = commitHash === undefined ? "latest" : commitHash;
+  const repoUrl = `https://github.com/${match[1]}.git`;
+  const commitHash = match[2];
 
-  //   try {
-  //     console.log(`🗑️  Deleting cached node dep for ${name}`);
-  //     await exec(`rm -rf ${packagePath}`);
-  //     console.log(`⬇️  Cloning ${name} from git (${commitInfo})`);
-  //     await exec(`git clone ${repoUrl} ${packagePath}`);
-  //     if (!useLatest) {
-  //       if (commitHash !== undefined) {
-  //         process.chdir(packagePath);
-  //         await exec(`git reset --hard ${commitHash}`);
-  //       } else
-  //         throw new Error(
-  //           "Latest commit is not being used, yet no commit hash was specified"
-  //         );
-  //     }
-  //   } catch (err) {
-  //     console.error(`❗Failed to clone git repo for ${name}:\n`, err);
-  //   }
+  try {
+    console.log(`🗑️  Deleting cached node dep for ${name}`);
+    await exec(`rm -rf ${packagePath}`);
+    console.log(`⬇️  Cloning ${name} from git (${commitHash})`);
+    await exec(`git clone ${repoUrl} ${packagePath}`);
+  } catch (e) {
+    console.error(`❗Failed to clone git repo for ${name}:\n`, e);
+    hasErrors = true;
+  }
 }
 
 async function buildParserWASM(
@@ -72,8 +68,8 @@ async function buildParserWASM(
 
   const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
 
-  if (!fs.existsSync(cwd)) {
-    console.error(`🔥 Failed to find cwd ${label}:\n`, cwd);
+  if (fs.existsSync(cwd)) {
+    console.error(`❗ Failed to find cwd ${label}:\n`, cwd);
     hasErrors = true;
     return;
   }
@@ -82,7 +78,7 @@ async function buildParserWASM(
     try {
       await exec(generateCommand, { cwd });
     } catch (e) {
-      console.error(`🔥 Failed to generate ${label}:\n`, e);
+      console.error(`❗ Failed to generate ${label}:\n`, e);
       hasErrors = true;
       return;
     }
@@ -93,7 +89,7 @@ async function buildParserWASM(
     await exec(`mv *.wasm ${outDir}`, { cwd });
     console.log(`✅ Finished building ${label}`);
   } catch (e) {
-    console.error(`🔥 Failed to build ${label}:\n`, e);
+    console.error(`❗ Failed to build ${label}:\n`, e);
     hasErrors = true;
   }
 }

@@ -90,8 +90,8 @@ importers:
         specifier: github:tree-sitter-grammars/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1
         version: '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1'
       tree-sitter-markdown:
-        specifier: github:tree-sitter-grammars/tree-sitter-markdown#7fe453beacecf02c86f7736439f238f5bb8b5c9b
-        version: '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/7fe453beacecf02c86f7736439f238f5bb8b5c9b(tree-sitter@0.21.1)'
+        specifier: github:tree-sitter-grammars/tree-sitter-markdown#192407ab5a24bfc24f13332979b5e7967518754a
+        version: '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/192407ab5a24bfc24f13332979b5e7967518754a(tree-sitter@0.21.1)'
       tree-sitter-nix:
         specifier: github:nix-community/tree-sitter-nix#66e3e9ce9180ae08fc57372061006ef83f0abde7
         version: https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7
@@ -114,8 +114,8 @@ importers:
         specifier: github:tree-sitter/tree-sitter-rust#36ae187ed6dd3803a8a89dbb54f3124c8ee74662
         version: https://codeload.github.com/tree-sitter/tree-sitter-rust/tar.gz/36ae187ed6dd3803a8a89dbb54f3124c8ee74662
       tree-sitter-scala:
-        specifier: github:tree-sitter/tree-sitter-scala#master
-        version: https://codeload.github.com/tree-sitter/tree-sitter-scala/tar.gz/c1189954df854977c3a52003ca8a247c5f4729ba(tree-sitter@0.21.1)
+        specifier: ^0.23.4
+        version: 0.23.4(tree-sitter@0.21.1)
       tree-sitter-scss:
         specifier: github:serenadeai/tree-sitter-scss#c478c6868648eff49eb04a4df90d703dc45b312a
         version: https://codeload.github.com/serenadeai/tree-sitter-scss/tar.gz/c478c6868648eff49eb04a4df90d703dc45b312a
@@ -176,9 +176,9 @@ packages:
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
     engines: {node: '>=8'}
 
-  '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/7fe453beacecf02c86f7736439f238f5bb8b5c9b':
-    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/7fe453beacecf02c86f7736439f238f5bb8b5c9b}
-    version: 0.2.3
+  '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/192407ab5a24bfc24f13332979b5e7967518754a':
+    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/192407ab5a24bfc24f13332979b5e7967518754a}
+    version: 0.4.0
     peerDependencies:
       tree-sitter: ^0.21.1
       tree_sitter: '*'
@@ -459,9 +459,8 @@ packages:
     resolution: {tarball: https://codeload.github.com/tree-sitter/tree-sitter-rust/tar.gz/36ae187ed6dd3803a8a89dbb54f3124c8ee74662}
     version: 0.20.1
 
-  tree-sitter-scala@https://codeload.github.com/tree-sitter/tree-sitter-scala/tar.gz/c1189954df854977c3a52003ca8a247c5f4729ba:
-    resolution: {tarball: https://codeload.github.com/tree-sitter/tree-sitter-scala/tar.gz/c1189954df854977c3a52003ca8a247c5f4729ba}
-    version: 0.24.0
+  tree-sitter-scala@0.23.4:
+    resolution: {integrity: sha512-bNUt7ccJVNRXbPno79XEdbECmO8RabVMUgki4oYmndbvOGKqVWTAjaw2lJRENX0NR5tbMPoSfeoX0uJV/15NrA==}
     peerDependencies:
       tree-sitter: ^0.21.1
     peerDependenciesMeta:
@@ -561,7 +560,7 @@ snapshots:
 
   '@supercharge/promise-pool@3.2.0': {}
 
-  '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/7fe453beacecf02c86f7736439f238f5bb8b5c9b(tree-sitter@0.21.1)':
+  '@tree-sitter-grammars/tree-sitter-markdown@https://codeload.github.com/tree-sitter-grammars/tree-sitter-markdown/tar.gz/192407ab5a24bfc24f13332979b5e7967518754a(tree-sitter@0.21.1)':
     dependencies:
       node-addon-api: 8.3.0
       node-gyp-build: 4.8.4
@@ -756,7 +755,7 @@ snapshots:
     dependencies:
       nan: 2.22.0
 
-  tree-sitter-scala@https://codeload.github.com/tree-sitter/tree-sitter-scala/tar.gz/c1189954df854977c3a52003ca8a247c5f4729ba(tree-sitter@0.21.1):
+  tree-sitter-scala@0.23.4(tree-sitter@0.21.1):
     dependencies:
       node-addon-api: 8.3.0
       node-gyp-build: 4.8.4

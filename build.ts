@@ -37,6 +37,12 @@ async function buildParserWASM(
     packagePath = path.join(__dirname, "node_modules", name);
   }
 
+  if (!fs.existsSync(packagePath)) {
+    console.error(`🔥 Failed to find package ${name} @ ${packagePath}`);
+    hasErrors = true;
+    return;
+  }
+
   const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
 
   if (generate) {
@@ -44,6 +50,8 @@ async function buildParserWASM(
       await exec(generateCommand, { cwd });
     } catch (e) {
       console.error(`🔥 Failed to generate ${label}:\n`, e);
+      hasErrors = true;
+      return;
     }
   }
 

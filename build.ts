@@ -102,7 +102,7 @@ function buildParserWASMS() {
         // case "tree-sitter-perl":
         case "tree-sitter-latex":
         case "tree-sitter-swift":
-        case "tree-sitter-elixir":
+          // case "tree-sitter-elixir":
           await buildParserWASM(name, { generate: true });
           break;
         default:

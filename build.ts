@@ -11,20 +11,26 @@ const langArg = process.argv[2];
 const outDir = path.join(__dirname, "out");
 let hasErrors = false;
 
+function getPackagePath(name: string) {
+  try {
+    return findRoot(require.resolve(name));
+  } catch (_) {
+    return path.join(__dirname, "node_modules", name);
+  }
+}
+
 async function gitCloneOverload(
   name: keyof typeof packageInfo.devDependencies
 ) {
-  let packagePath;
-  try {
-    packagePath = findRoot(require.resolve(name));
-  } catch (_) {
-    packagePath = path.join(__dirname, "node_modules", name);
-  }
-
+  const packagePath = getPackagePath(name);
   const value = packageInfo.devDependencies[name];
-  const match = value.match(/^github:{.+}#{.+}$/);
+  const match = value.match(/^github:(.+)#(.+)$/);
 
+  console.log("##########");
+  console.log(name);
+  console.log(value);
   console.log(match);
+  console.log("##########");
 
   //   "https://github.com/tree-sitter/tree-sitter-agda.git",
   // github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4
@@ -56,25 +62,13 @@ async function buildParserWASM(
 ) {
   const label = subPath ? path.join(name, subPath) : name;
 
-  let cliPackagePath;
-  try {
-    cliPackagePath = findRoot(require.resolve("tree-sitter-cli"));
-  } catch (_) {
-    cliPackagePath = path.join(__dirname, "node_modules", "tree-sitter-cli");
-  }
-
+  const cliPackagePath = getPackagePath("tree-sitter-cli");
+  const packagePath = getPackagePath(name);
   const cliPath = path.join(cliPackagePath, "tree-sitter");
   const generateCommand = cliPath.concat(" generate");
   const buildCommand = cliPath.concat(" build --wasm");
 
   console.log(`⏳ Building ${label}`);
-
-  let packagePath;
-  try {
-    packagePath = findRoot(require.resolve(name));
-  } catch (_) {
-    packagePath = path.join(__dirname, "node_modules", name);
-  }
 
   const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
 

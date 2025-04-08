@@ -11,6 +11,45 @@ const langArg = process.argv[2];
 const outDir = path.join(__dirname, "out");
 let hasErrors = false;
 
+async function gitCloneOverload(
+  name: keyof typeof packageInfo.devDependencies
+) {
+  let packagePath;
+  try {
+    packagePath = findRoot(require.resolve(name));
+  } catch (_) {
+    packagePath = path.join(__dirname, "node_modules", name);
+  }
+
+  const value = packageInfo.devDependencies[name];
+  const match = value.match(/^github:{.+}#{.+}$/);
+
+  console.log(match);
+
+  //   "https://github.com/tree-sitter/tree-sitter-agda.git",
+  // github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4
+
+  //   let commitInfo = commitHash === undefined ? "latest" : commitHash;
+
+  //   try {
+  //     console.log(`🗑️  Deleting cached node dep for ${name}`);
+  //     await exec(`rm -rf ${packagePath}`);
+  //     console.log(`⬇️  Cloning ${name} from git (${commitInfo})`);
+  //     await exec(`git clone ${repoUrl} ${packagePath}`);
+  //     if (!useLatest) {
+  //       if (commitHash !== undefined) {
+  //         process.chdir(packagePath);
+  //         await exec(`git reset --hard ${commitHash}`);
+  //       } else
+  //         throw new Error(
+  //           "Latest commit is not being used, yet no commit hash was specified"
+  //         );
+  //     }
+  //   } catch (err) {
+  //     console.error(`❗Failed to clone git repo for ${name}:\n`, err);
+  //   }
+}
+
 async function buildParserWASM(
   name: string,
   { subPath, generate }: { subPath?: string; generate?: boolean } = {}
@@ -99,10 +138,13 @@ function buildParserWASMS() {
             subPath: "tree-sitter-markdown-inline",
           });
           break;
-        // case "tree-sitter-perl":
+        case "tree-sitter-perl":
         case "tree-sitter-latex":
         case "tree-sitter-swift":
-          // case "tree-sitter-elixir":
+          await buildParserWASM(name, { generate: true });
+          break;
+        case "tree-sitter-elixir":
+          gitCloneOverload(name);
           await buildParserWASM(name, { generate: true });
           break;
         default:

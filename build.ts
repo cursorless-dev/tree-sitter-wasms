@@ -7,7 +7,6 @@ import util from "node:util";
 import packageInfo from "./package.json";
 
 type ParserName = keyof typeof packageInfo.devDependencies;
-
 const exec = util.promisify(require("child_process").exec);
 const outDir = path.join(__dirname, "out");
 let hasErrors = false;
@@ -23,7 +22,7 @@ function getPackagePath(name: string) {
 async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
   const value = packageInfo.devDependencies[name];
-  const match = value.match(/^github:(.+)#(.+)$/);
+  const match = value.match(/^github:(\S+)#(\S+)$/);
 
   if (match == null || match.length < 3) {
     console.error(`❗ Failed to parse git repo for ${name}:\n`, value);

@@ -6,10 +6,13 @@ import path from "node:path";
 import util from "node:util";
 import packageInfo from "./package.json";
 
+class ParserError {
+  constructor(public message: string, public value: any) {}
+}
+
 type ParserName = keyof typeof packageInfo.devDependencies;
 const exec = util.promisify(require("child_process").exec);
 const outDir = path.join(__dirname, "out");
-let hasErrors = false;
 
 function getPackagePath(name: string) {
   try {
@@ -25,9 +28,7 @@ async function gitCloneOverload(name: ParserName) {
   const match = value.match(/^github:(\S+)#(\S+)$/);
 
   if (match == null) {
-    console.error(`❗ Failed to parse git repo for ${name}:\n`, value);
-    hasErrors = true;
-    return;
+    throw new ParserError(`❗ Failed to parse git repo for ${name}`, value);
   }
 
   try {
@@ -41,8 +42,7 @@ async function gitCloneOverload(name: ParserName) {
     process.chdir(packagePath);
     await exec(`git reset --hard ${commitHash}`);
   } catch (e) {
-    console.error(`❗Failed to clone git repo for ${name}:\n`, e);
-    hasErrors = true;
+    throw new ParserError(`❗Failed to clone git repo for ${name}`, e);
   }
 }
 
@@ -63,18 +63,14 @@ async function buildParserWASM(
   const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
 
   if (!fs.existsSync(cwd)) {
-    console.error(`❗ Failed to find cwd ${label}:\n`, cwd);
-    hasErrors = true;
-    return;
+    throw new ParserError(`❗ Failed to find cwd ${label}`, cwd);
   }
 
   if (generate) {
     try {
       await exec(generateCommand, { cwd });
     } catch (e) {
-      console.error(`❗ Failed to generate ${label}:\n`, e);
-      hasErrors = true;
-      return;
+      throw new ParserError(`❗ Failed to generate ${label}`, e);
     }
   }
 
@@ -83,12 +79,11 @@ async function buildParserWASM(
     await exec(`mv *.wasm ${outDir}`, { cwd });
     console.log(`✅ Finished building ${label}`);
   } catch (e) {
-    console.error(`❗ Failed to build ${label}:\n`, e);
-    hasErrors = true;
+    throw new ParserError(`❗ Failed to build ${label}`, e);
   }
 }
 
-function buildParserWASMS() {
+async function buildParserWASMS() {
   const grammars = Object.keys(packageInfo.devDependencies).filter(
     (n) =>
       (n.startsWith("tree-sitter-") &&
@@ -97,57 +92,70 @@ function buildParserWASMS() {
       n === "@elm-tooling/tree-sitter-elm"
   ) as ParserName[];
 
-  return PromisePool.withConcurrency(os.cpus().length)
+  let hasErrors = false;
+
+  await PromisePool.withConcurrency(os.cpus().length)
     .for(grammars)
     .process(async (name: ParserName) => {
-      switch (name) {
-        case "tree-sitter-php":
-          await buildParserWASM(name, { subPath: "php" });
-          break;
+      try {
+        switch (name) {
+          case "tree-sitter-php":
+            await buildParserWASM(name, { subPath: "php" });
+            break;
 
-        case "tree-sitter-typescript":
-          await buildParserWASM(name, { subPath: "typescript" });
-          await buildParserWASM(name, { subPath: "tsx" });
-          break;
+          case "tree-sitter-typescript":
+            await buildParserWASM(name, { subPath: "typescript" });
+            await buildParserWASM(name, { subPath: "tsx" });
+            break;
 
-        case "tree-sitter-xml":
-          await buildParserWASM(name, { subPath: "xml" });
-          await buildParserWASM(name, { subPath: "dtd" });
-          break;
+          case "tree-sitter-xml":
+            await buildParserWASM(name, { subPath: "xml" });
+            await buildParserWASM(name, { subPath: "dtd" });
+            break;
 
-        case "tree-sitter-markdown":
-          await gitCloneOverload(name);
-          await buildParserWASM(name, {
-            subPath: "tree-sitter-markdown",
-          });
-          await buildParserWASM(name, {
-            subPath: "tree-sitter-markdown-inline",
-          });
-          break;
+          case "tree-sitter-markdown":
+            await gitCloneOverload(name);
+            await buildParserWASM(name, {
+              subPath: "tree-sitter-markdown",
+            });
+            await buildParserWASM(name, {
+              subPath: "tree-sitter-markdown-inline",
+            });
+            break;
 
-        case "tree-sitter-elixir":
-        case "tree-sitter-perl":
-        case "tree-sitter-query":
-          await gitCloneOverload(name);
-          await buildParserWASM(name, { generate: true });
-          break;
+          case "tree-sitter-elixir":
+          case "tree-sitter-perl":
+          case "tree-sitter-query":
+            // await gitCloneOverload(name);
+            await buildParserWASM(name, { generate: true });
+            break;
 
-        case "tree-sitter-latex":
-        case "tree-sitter-swift":
-          await buildParserWASM(name, { generate: true });
-          break;
+          case "tree-sitter-latex":
+          case "tree-sitter-swift":
+            await buildParserWASM(name, { generate: true });
+            break;
 
-        default:
-          await buildParserWASM(name);
+          default:
+            await buildParserWASM(name);
+        }
+      } catch (e) {
+        if (e instanceof ParserError) {
+          console.error(e.message + ":\n", e.value);
+        } else {
+          console.error(e);
+        }
+        hasErrors = true;
       }
     });
+
+  if (hasErrors) {
+    throw new Error("Failed to build some parsers");
+  }
 }
 
 fs.mkdirSync(outDir);
 process.chdir(outDir);
 
-buildParserWASMS().then(() => {
-  if (hasErrors) {
-    process.exit(1);
-  }
+buildParserWASMS().catch(() => {
+  process.exit(1);
 });

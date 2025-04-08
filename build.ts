@@ -103,14 +103,17 @@ function buildParserWASMS() {
         case "tree-sitter-php":
           await buildParserWASM(name, { subPath: "php" });
           break;
+
         case "tree-sitter-typescript":
           await buildParserWASM(name, { subPath: "typescript" });
           await buildParserWASM(name, { subPath: "tsx" });
           break;
+
         case "tree-sitter-xml":
           await buildParserWASM(name, { subPath: "xml" });
           await buildParserWASM(name, { subPath: "dtd" });
           break;
+
         case "tree-sitter-markdown":
           await gitCloneOverload(name);
           await buildParserWASM(name, {
@@ -120,16 +123,19 @@ function buildParserWASMS() {
             subPath: "tree-sitter-markdown-inline",
           });
           break;
-        case "tree-sitter-perl":
-        case "tree-sitter-latex":
-        case "tree-sitter-swift":
-          await buildParserWASM(name, { generate: true });
-          break;
+
         case "tree-sitter-elixir":
+        case "tree-sitter-perl":
         case "tree-sitter-query":
           await gitCloneOverload(name);
           await buildParserWASM(name, { generate: true });
           break;
+
+        case "tree-sitter-latex":
+        case "tree-sitter-swift":
+          await buildParserWASM(name, { generate: true });
+          break;
+
         default:
           await buildParserWASM(name);
       }

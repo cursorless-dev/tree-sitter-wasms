@@ -40,7 +40,7 @@ async function buildParserWASM(
   const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
 
   if (!fs.existsSync(cwd)) {
-    console.error(`🔥 Failed to find cwd: ${cwd}`);
+    console.error(`🔥 Failed to find cwd ${label}:\n`, cwd);
     hasErrors = true;
     return;
   }
@@ -99,7 +99,7 @@ function buildParserWASMS() {
             subPath: "tree-sitter-markdown-inline",
           });
           break;
-        case "tree-sitter-perl":
+        // case "tree-sitter-perl":
         case "tree-sitter-latex":
         case "tree-sitter-swift":
         case "tree-sitter-elixir":

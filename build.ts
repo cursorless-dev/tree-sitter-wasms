@@ -6,8 +6,9 @@ import path from "node:path";
 import util from "node:util";
 import packageInfo from "./package.json";
 
+type ParserName = keyof typeof packageInfo.devDependencies;
+
 const exec = util.promisify(require("child_process").exec);
-const langArg = process.argv[2];
 const outDir = path.join(__dirname, "out");
 let hasErrors = false;
 
@@ -19,18 +20,10 @@ function getPackagePath(name: string) {
   }
 }
 
-async function gitCloneOverload(
-  name: keyof typeof packageInfo.devDependencies
-) {
+async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
   const value = packageInfo.devDependencies[name];
   const match = value.match(/^github:(.+)#(.+)$/);
-
-  console.log("##########");
-  console.log(name);
-  console.log(value);
-  console.log(match);
-  console.log("##########");
 
   if (match == null || match.length < 3) {
     console.error(`❗ Failed to parse git repo for ${name}:\n`, value);
@@ -53,7 +46,7 @@ async function gitCloneOverload(
 }
 
 async function buildParserWASM(
-  name: string,
+  name: ParserName,
   { subPath, generate }: { subPath?: string; generate?: boolean } = {}
 ) {
   const label = subPath ? path.join(name, subPath) : name;
@@ -95,19 +88,17 @@ async function buildParserWASM(
 }
 
 function buildParserWASMS() {
-  const grammars = Object.keys(packageInfo.devDependencies)
-    .filter(
-      (n) =>
-        (n.startsWith("tree-sitter-") ||
-          n === "@elm-tooling/tree-sitter-elm") &&
+  const grammars = Object.keys(packageInfo.devDependencies).filter(
+    (n) =>
+      (n.startsWith("tree-sitter-") &&
         n !== "tree-sitter-cli" &&
-        n !== "tree-sitter"
-    )
-    .filter((s) => !langArg || s.includes(langArg));
+        n !== "tree-sitter") ||
+      n === "@elm-tooling/tree-sitter-elm"
+  ) as ParserName[];
 
   return PromisePool.withConcurrency(os.cpus().length)
     .for(grammars)
-    .process(async (name: string) => {
+    .process(async (name: ParserName) => {
       switch (name) {
         case "tree-sitter-php":
           await buildParserWASM(name, { subPath: "php" });
@@ -121,6 +112,7 @@ function buildParserWASMS() {
           await buildParserWASM(name, { subPath: "dtd" });
           break;
         case "tree-sitter-markdown":
+          await gitCloneOverload(name);
           await buildParserWASM(name, {
             subPath: "tree-sitter-markdown",
           });
@@ -134,6 +126,7 @@ function buildParserWASMS() {
           await buildParserWASM(name, { generate: true });
           break;
         case "tree-sitter-elixir":
+        case "tree-sitter-query":
           await gitCloneOverload(name);
           await buildParserWASM(name, { generate: true });
           break;

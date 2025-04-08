@@ -34,10 +34,12 @@ async function gitCloneOverload(name: ParserName) {
     const repoUrl = `https://github.com/${match[1]}.git`;
     const commitHash = match[2];
 
-    console.log(`🗑️  Deleting cached node dep for ${name}`);
+    console.log(`🗑️  Deleting cached node dependency for ${name}`);
     await exec(`rm -rf ${packagePath}`);
-    console.log(`⬇️  Cloning ${name} from git (${commitHash})`);
+    console.log(`⬇️  Cloning ${name} from git`);
     await exec(`git clone ${repoUrl} ${packagePath}`);
+    process.chdir(packagePath);
+    await exec(`git reset --hard ${commitHash}`);
   } catch (e) {
     console.error(`❗Failed to clone git repo for ${name}:\n`, e);
     hasErrors = true;

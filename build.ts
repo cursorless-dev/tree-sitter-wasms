@@ -28,18 +28,26 @@ async function buildParserWASM(
   const generateCommand = cliPath.concat(" generate");
   const buildCommand = cliPath.concat(" build --wasm");
 
+  console.log(`⏳ Building ${label}`);
+
+  let packagePath;
   try {
-    console.log(`⏳ Building ${label}`);
-    let packagePath;
+    packagePath = findRoot(require.resolve(name));
+  } catch (_) {
+    packagePath = path.join(__dirname, "node_modules", name);
+  }
+
+  const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
+
+  if (generate) {
     try {
-      packagePath = findRoot(require.resolve(name));
-    } catch (_) {
-      packagePath = path.join(__dirname, "node_modules", name);
-    }
-    const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
-    if (generate) {
       await exec(generateCommand, { cwd });
+    } catch (e) {
+      console.error(`🔥 Failed to generate ${label}:\n`, e);
     }
+  }
+
+  try {
     await exec(buildCommand, { cwd });
     await exec(`mv *.wasm ${outDir}`, { cwd });
     console.log(`✅ Finished building ${label}`);
@@ -78,16 +86,15 @@ function buildParserWASMS() {
         case "tree-sitter-markdown":
           await buildParserWASM(name, {
             subPath: "tree-sitter-markdown",
-            generate: true,
           });
           await buildParserWASM(name, {
             subPath: "tree-sitter-markdown-inline",
-            generate: true,
           });
           break;
         case "tree-sitter-perl":
         case "tree-sitter-latex":
         case "tree-sitter-swift":
+        case "tree-sitter-elixir":
           await buildParserWASM(name, { generate: true });
           break;
         default:

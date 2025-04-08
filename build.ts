@@ -30,10 +30,10 @@ async function gitCloneOverload(name: ParserName) {
     return;
   }
 
-  const repoUrl = `https://github.com/${match[1]}.git`;
-  const commitHash = match[2];
-
   try {
+    const repoUrl = `https://github.com/${match[1]}.git`;
+    const commitHash = match[2];
+
     console.log(`🗑️  Deleting cached node dep for ${name}`);
     await exec(`rm -rf ${packagePath}`);
     console.log(`⬇️  Cloning ${name} from git (${commitHash})`);

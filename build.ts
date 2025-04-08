@@ -33,7 +33,7 @@ async function gitCloneOverload(
   console.log("##########");
 
   if (match == null || match.length < 3) {
-    console.log(`❗ Failed to parse git repo for ${name}:\n`, value);
+    console.error(`❗ Failed to parse git repo for ${name}:\n`, value);
     hasErrors = true;
     return;
   }
@@ -68,7 +68,7 @@ async function buildParserWASM(
 
   const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
 
-  if (fs.existsSync(cwd)) {
+  if (!fs.existsSync(cwd)) {
     console.error(`❗ Failed to find cwd ${label}:\n`, cwd);
     hasErrors = true;
     return;
@@ -134,7 +134,7 @@ function buildParserWASMS() {
           await buildParserWASM(name, { generate: true });
           break;
         case "tree-sitter-elixir":
-          gitCloneOverload(name);
+          await gitCloneOverload(name);
           await buildParserWASM(name, { generate: true });
           break;
         default:

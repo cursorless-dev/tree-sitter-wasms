@@ -1,6 +1,6 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",
@@ -25,7 +25,7 @@
     "@elm-tooling/tree-sitter-elm": "github:elm-tooling/tree-sitter-elm#0aecfbf69f0c9bcdfada0f6f2c5398235c23949f",
     "@supercharge/promise-pool": "^3.1.1",
     "@types/find-root": "^1.1.4",
-    "@types/node": "^20.11.17",
+    "@types/node": "21.1.0",
     "find-root": "^1.1.0",
     "tree-sitter-agda": "github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4",
     "tree-sitter-bash": "github:tree-sitter/tree-sitter-bash#2fbd860f802802ca76a6661ce025b3a3bca2d3ed",
@@ -64,10 +64,8 @@
     "tree-sitter-xml": "github:tree-sitter-grammars/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",
     "tree-sitter-yaml": "github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "tree-sitter-cli": "^0.22.6"
   },
-  "dependencies": {
-    "tree-sitter": "^0.22.4",
-    "tree-sitter-cli": "^0.24.7"
-  }
+  "dependencies": {}
 }

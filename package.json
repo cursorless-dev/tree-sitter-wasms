@@ -92,7 +92,7 @@
     "tree-sitter-lua": "github:tree-sitter-grammars/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1",
     "tree-sitter-markdown": "github:tree-sitter-grammars/tree-sitter-markdown#192407ab5a24bfc24f13332979b5e7967518754a",
     "tree-sitter-nix": "github:nix-community/tree-sitter-nix#66e3e9ce9180ae08fc57372061006ef83f0abde7",
-    "tree-sitter-perl": "github:ganezdragon/tree-sitter-perl#3d3a95ee6645d7bcd993e77b252ffd33fd297c8e",
+    "tree-sitter-perl": "github:tree-sitter-perl/tree-sitter-perl#1621af4a06404f854a36409c2a974c75dfe42bcf",
     "tree-sitter-php": "github:tree-sitter/tree-sitter-php#f7cf7348737d8cff1b13407a0bfedce02ee7b046",
     "tree-sitter-python": "github:tree-sitter/tree-sitter-python#71778c2a472ed00a64abf4219544edbf8e4b86d7",
     "tree-sitter-query": "github:tree-sitter-grammars/tree-sitter-query#930202c2a80965a7a9ca018b5b2a08b25dfa7f12",

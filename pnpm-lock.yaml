@@ -78,8 +78,8 @@ importers:
         specifier: github:nix-community/tree-sitter-nix#66e3e9ce9180ae08fc57372061006ef83f0abde7
         version: https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7
       tree-sitter-perl:
-        specifier: github:ganezdragon/tree-sitter-perl#3d3a95ee6645d7bcd993e77b252ffd33fd297c8e
-        version: '@ganezdragon/tree-sitter-perl@https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e'
+        specifier: github:tree-sitter-perl/tree-sitter-perl#1621af4a06404f854a36409c2a974c75dfe42bcf
+        version: https://codeload.github.com/tree-sitter-perl/tree-sitter-perl/tar.gz/1621af4a06404f854a36409c2a974c75dfe42bcf(tree-sitter@0.21.1)
       tree-sitter-php:
         specifier: github:tree-sitter/tree-sitter-php#f7cf7348737d8cff1b13407a0bfedce02ee7b046
         version: https://codeload.github.com/tree-sitter/tree-sitter-php/tar.gz/f7cf7348737d8cff1b13407a0bfedce02ee7b046(tree-sitter@0.21.1)
@@ -153,10 +153,6 @@ packages:
 
   '@elm-tooling/tree-sitter-elm@5.7.0':
     resolution: {integrity: sha512-ezKHIczyZx6bFtktLFRPbvW/7LzL0XdI1Y5OoxkNaSrfh2m0Bm8yilbB4Hya4VQN7mJktXhhzAMGab8nKm/2Bw==}
-
-  '@ganezdragon/tree-sitter-perl@https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e':
-    resolution: {tarball: https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e}
-    version: 0.3.0
 
   '@jridgewell/resolve-uri@3.1.2':
     resolution: {integrity: sha512-bRISgCIjP20/tbWSPWMEi54QVPRZExkuD9lJL+UIxUKtwVJA8wW1Trb1jMs1RFXo1CBTNZ/5hpC9QvmKWdopKw==}
@@ -422,6 +418,17 @@ packages:
     resolution: {tarball: https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7}
     version: 0.0.2
 
+  tree-sitter-perl@https://codeload.github.com/tree-sitter-perl/tree-sitter-perl/tar.gz/1621af4a06404f854a36409c2a974c75dfe42bcf:
+    resolution: {tarball: https://codeload.github.com/tree-sitter-perl/tree-sitter-perl/tar.gz/1621af4a06404f854a36409c2a974c75dfe42bcf}
+    version: 1.0.0
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      tree-sitter: ^0.21.0
+      tree_sitter: '*'
+    peerDependenciesMeta:
+      tree_sitter:
+        optional: true
+
   tree-sitter-php@https://codeload.github.com/tree-sitter/tree-sitter-php/tar.gz/f7cf7348737d8cff1b13407a0bfedce02ee7b046:
     resolution: {tarball: https://codeload.github.com/tree-sitter/tree-sitter-php/tar.gz/f7cf7348737d8cff1b13407a0bfedce02ee7b046}
     version: 0.23.12
@@ -540,10 +547,6 @@ snapshots:
       '@jridgewell/trace-mapping': 0.3.9
 
   '@elm-tooling/tree-sitter-elm@5.7.0':
-    dependencies:
-      nan: 2.22.0
-
-  '@ganezdragon/tree-sitter-perl@https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e':
     dependencies:
       nan: 2.22.0
 
@@ -729,6 +732,12 @@ snapshots:
   tree-sitter-nix@https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7:
     dependencies:
       nan: 2.22.0
+
+  tree-sitter-perl@https://codeload.github.com/tree-sitter-perl/tree-sitter-perl/tar.gz/1621af4a06404f854a36409c2a974c75dfe42bcf(tree-sitter@0.21.1):
+    dependencies:
+      node-addon-api: 7.1.1
+      node-gyp-build: 4.8.4
+      tree-sitter: 0.21.1
 
   tree-sitter-php@https://codeload.github.com/tree-sitter/tree-sitter-php/tar.gz/f7cf7348737d8cff1b13407a0bfedce02ee7b046(tree-sitter@0.21.1):
     dependencies:

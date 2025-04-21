@@ -16,7 +16,6 @@
   "pnpm": {
     "onlyBuiltDependencies": [
       "@elm-tooling/tree-sitter-elm",
-      "@ganezdragon/tree-sitter-perl",
       "@muniftanjim/tree-sitter-lua",
       "@tree-sitter-grammars/tree-sitter-markdown",
       "@tree-sitter-grammars/tree-sitter-xml",
@@ -41,6 +40,7 @@
       "tree-sitter-kotlin",
       "tree-sitter-latex",
       "tree-sitter-nix",
+      "tree-sitter-perl",
       "tree-sitter-php",
       "tree-sitter-python",
       "tree-sitter-query",

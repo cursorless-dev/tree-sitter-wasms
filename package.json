@@ -40,6 +40,7 @@
       "tree-sitter-kotlin",
       "tree-sitter-latex",
       "tree-sitter-nix",
+      "tree-sitter-perl",
       "tree-sitter-php",
       "tree-sitter-python",
       "tree-sitter-query",

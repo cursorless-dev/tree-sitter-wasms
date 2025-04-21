@@ -28,8 +28,13 @@ jobs:
         with:
           version: 3.1.74
 
+      # - name: Install dependencies
+      #   run: pnpm --color install
+
       - name: Install dependencies
-        run: pnpm --color install
+        run: pnpm install --reporter=ndjson
+        env:
+          NODE_DEBUG: node-gyp
 
       - name: Build
         run: pnpm build

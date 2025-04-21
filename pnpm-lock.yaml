@@ -7,10 +7,25 @@ settings:
 importers:
 
   .:
-    dependencies:
+    devDependencies:
       '@elm-tooling/tree-sitter-elm':
         specifier: 5.7.0
         version: 5.7.0
+      '@supercharge/promise-pool':
+        specifier: ^3.1.1
+        version: 3.2.0
+      '@types/find-root':
+        specifier: ^1.1.4
+        version: 1.1.4
+      '@types/node':
+        specifier: ^20.14.0
+        version: 20.17.12
+      find-root:
+        specifier: ^1.1.0
+        version: 1.1.0
+      tree-sitter:
+        specifier: ^0.21.1
+        version: 0.21.1
       tree-sitter-agda:
         specifier: github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4
         version: https://codeload.github.com/tree-sitter/tree-sitter-agda/tar.gz/47802091de0cb8ac2533d67ac37e65692c5902c4(tree-sitter@0.21.1)
@@ -23,6 +38,9 @@ importers:
       tree-sitter-c-sharp:
         specifier: 0.19.0
         version: 0.19.0
+      tree-sitter-cli:
+        specifier: ^0.24.7
+        version: 0.24.7
       tree-sitter-clojure:
         specifier: github:sogaiu/tree-sitter-clojure#f4236d4da8aa92bc105d9c118746474c608e6af7
         version: https://codeload.github.com/sogaiu/tree-sitter-clojure/tar.gz/f4236d4da8aa92bc105d9c118746474c608e6af7
@@ -119,25 +137,6 @@ importers:
       tree-sitter-yaml:
         specifier: github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267
         version: '@tree-sitter-grammars/tree-sitter-yaml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-yaml/tar.gz/7b03feefd36b5f155465ca736c6304aca983b267(tree-sitter@0.21.1)'
-    devDependencies:
-      '@supercharge/promise-pool':
-        specifier: ^3.1.1
-        version: 3.2.0
-      '@types/find-root':
-        specifier: ^1.1.4
-        version: 1.1.4
-      '@types/node':
-        specifier: ^20.14.0
-        version: 20.17.12
-      find-root:
-        specifier: ^1.1.0
-        version: 1.1.0
-      tree-sitter:
-        specifier: ^0.21.1
-        version: 0.21.1
-      tree-sitter-cli:
-        specifier: ^0.24.7
-        version: 0.24.7
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.17.12)(typescript@5.7.3)

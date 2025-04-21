@@ -10,7 +10,7 @@ class ParserError {
   constructor(public message: string, public value: any) {}
 }
 
-const { dependencies } = packageInfo;
+const dependencies = packageInfo.devDependencies;
 type ParserName = keyof typeof dependencies;
 const exec = util.promisify(require("child_process").exec);
 const outDir = path.join(__dirname, "out");
@@ -123,7 +123,11 @@ async function processParser(name: ParserName) {
 }
 
 async function run() {
-  const grammars = Object.keys(dependencies) as ParserName[];
+  const grammars = Object.keys(dependencies).filter(
+    (n) =>
+      (n.startsWith("tree-sitter-") && n !== "tree-sitter-cli") ||
+      n === "@elm-tooling/tree-sitter-elm"
+  ) as ParserName[];
 
   let hasErrors = false;
 

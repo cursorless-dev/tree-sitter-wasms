@@ -100,7 +100,7 @@ async function processParser(name: ParserName) {
       break;
 
     case "tree-sitter-markdown":
-      await gitCloneOverload(name);
+      //   await gitCloneOverload(name);
       await buildParserWASM(name, {
         subPath: "tree-sitter-markdown",
       });
@@ -109,17 +109,17 @@ async function processParser(name: ParserName) {
       });
       break;
 
-    case "tree-sitter-elixir":
-    case "tree-sitter-query":
-    case "tree-sitter-perl":
-      await gitCloneOverload(name);
-      await buildParserWASM(name, { generate: true });
-      break;
+    // case "tree-sitter-elixir":
+    // case "tree-sitter-query":
+    // case "tree-sitter-perl":
+    //   await gitCloneOverload(name);
+    //   await buildParserWASM(name, { generate: true });
+    //   break;
 
-    case "tree-sitter-latex":
-    case "tree-sitter-swift":
-      await buildParserWASM(name, { generate: true });
-      break;
+    // case "tree-sitter-latex":
+    // case "tree-sitter-swift":
+    //   await buildParserWASM(name, { generate: true });
+    //   break;
 
     default:
       await buildParserWASM(name);

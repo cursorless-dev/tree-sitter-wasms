@@ -59,6 +59,7 @@
     "tree-sitter-typescript": "github:tree-sitter/tree-sitter-typescript#4ad3010c91d700026d036b5230e2d99ba94ae8a4",
     "tree-sitter-xml": "github:tree-sitter-grammars/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",
     "tree-sitter-yaml": "github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267",
+    "tree-sitter": "^0.21.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3"
   },

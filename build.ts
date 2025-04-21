@@ -112,7 +112,6 @@ async function processParser(name: ParserName) {
 
     case "tree-sitter-elixir":
     case "tree-sitter-query":
-    case "tree-sitter-perl":
       await gitCloneOverload(name);
       await buildParserWASM(name, { generate: true });
       break;

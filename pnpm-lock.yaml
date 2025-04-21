@@ -84,8 +84,8 @@ importers:
         specifier: github:fwcd/tree-sitter-kotlin#76f53c48d29e8588934fb55b0240d7bdfe00bfe5
         version: https://codeload.github.com/fwcd/tree-sitter-kotlin/tar.gz/76f53c48d29e8588934fb55b0240d7bdfe00bfe5(tree-sitter@0.21.1)
       tree-sitter-latex:
-        specifier: github:latex-lsp/tree-sitter-latex#1666e9780de42a31b1376d32fbe8332e8dd5850f
-        version: https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/1666e9780de42a31b1376d32fbe8332e8dd5850f
+        specifier: github:latex-lsp/tree-sitter-latex#a6c812704b3d3e1541b0853aa0d6d561301320e1
+        version: '@pfoerster/tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/a6c812704b3d3e1541b0853aa0d6d561301320e1'
       tree-sitter-lua:
         specifier: github:tree-sitter-grammars/tree-sitter-lua#9668709211b2e683f27f414454a8b51bf0a6bda1
         version: '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1'
@@ -177,6 +177,10 @@ packages:
   '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1':
     resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1}
     version: 0.0.19
+
+  '@pfoerster/tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/a6c812704b3d3e1541b0853aa0d6d561301320e1':
+    resolution: {tarball: https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/a6c812704b3d3e1541b0853aa0d6d561301320e1}
+    version: 0.3.0
 
   '@supercharge/promise-pool@3.2.0':
     resolution: {integrity: sha512-pj0cAALblTZBPtMltWOlZTQSLT07jIaFNeM8TWoJD1cQMgDB9mcMlVMoetiB35OzNJpqQ2b+QEtwiR9f20mADg==}
@@ -530,10 +534,6 @@ packages:
       tree_sitter:
         optional: true
 
-  tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/1666e9780de42a31b1376d32fbe8332e8dd5850f:
-    resolution: {tarball: https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/1666e9780de42a31b1376d32fbe8332e8dd5850f}
-    version: 0.1.0
-
   tree-sitter-nix@https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7:
     resolution: {tarball: https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7}
     version: 0.0.2
@@ -685,6 +685,10 @@ snapshots:
       '@jridgewell/sourcemap-codec': 1.5.0
 
   '@muniftanjim/tree-sitter-lua@https://codeload.github.com/tree-sitter-grammars/tree-sitter-lua/tar.gz/9668709211b2e683f27f414454a8b51bf0a6bda1':
+    dependencies:
+      nan: 2.22.0
+
+  '@pfoerster/tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/a6c812704b3d3e1541b0853aa0d6d561301320e1':
     dependencies:
       nan: 2.22.0
 
@@ -970,10 +974,6 @@ snapshots:
       node-addon-api: 7.1.1
       node-gyp-build: 4.8.4
       tree-sitter: 0.21.1
-
-  tree-sitter-latex@https://codeload.github.com/latex-lsp/tree-sitter-latex/tar.gz/1666e9780de42a31b1376d32fbe8332e8dd5850f:
-    dependencies:
-      nan: 2.22.0
 
   tree-sitter-nix@https://codeload.github.com/nix-community/tree-sitter-nix/tar.gz/66e3e9ce9180ae08fc57372061006ef83f0abde7:
     dependencies:

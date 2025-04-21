@@ -1,6 +1,6 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",

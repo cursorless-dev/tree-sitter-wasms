@@ -14,45 +14,7 @@
     "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
   },
   "pnpm": {
-    "onlyBuiltDependencies": [
-      "@elm-tooling/tree-sitter-elm",
-      "@muniftanjim/tree-sitter-lua",
-      "@tree-sitter-grammars/tree-sitter-markdown",
-      "@tree-sitter-grammars/tree-sitter-xml",
-      "@tree-sitter-grammars/tree-sitter-yaml",
-      "tree-sitter-agda",
-      "tree-sitter-bash",
-      "tree-sitter-c-sharp",
-      "tree-sitter-c",
-      "tree-sitter-cli",
-      "tree-sitter-cpp",
-      "tree-sitter-css",
-      "tree-sitter-dart",
-      "tree-sitter-elixir",
-      "tree-sitter-gleam",
-      "tree-sitter-go",
-      "tree-sitter-haskell",
-      "tree-sitter-hcl",
-      "tree-sitter-html",
-      "tree-sitter-java",
-      "tree-sitter-javascript",
-      "tree-sitter-json",
-      "tree-sitter-kotlin",
-      "tree-sitter-latex",
-      "tree-sitter-nix",
-      "tree-sitter-php",
-      "tree-sitter-python",
-      "tree-sitter-query",
-      "tree-sitter-ruby",
-      "tree-sitter-rust",
-      "tree-sitter-scala",
-      "tree-sitter-scss",
-      "tree-sitter-sparql",
-      "tree-sitter-swift",
-      "tree-sitter-talon",
-      "tree-sitter-typescript",
-      "tree-sitter"
-    ]
+    "neverBuiltDependencies": []
   },
   "scripts": {
     "build": "ts-node build.ts"

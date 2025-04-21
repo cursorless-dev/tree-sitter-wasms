@@ -7,11 +7,16 @@
   "author": "Cursorless Dev",
   "license": "Unlicense",
   "files": [
-    "/out"
+    "out"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "tree-sitter-cli"
+    ]
   },
   "scripts": {
     "build": "ts-node build.ts"

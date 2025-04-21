@@ -10,7 +10,8 @@ class ParserError {
   constructor(public message: string, public value: any) {}
 }
 
-type ParserName = keyof typeof packageInfo.devDependencies;
+const { dependencies } = packageInfo;
+type ParserName = keyof typeof dependencies;
 const exec = util.promisify(require("child_process").exec);
 const outDir = path.join(__dirname, "out");
 
@@ -24,7 +25,7 @@ function getPackagePath(name: string) {
 
 async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
-  const value = packageInfo.devDependencies[name];
+  const value = dependencies[name];
   const match = value.match(/^github:(\S+)#(\S+)$/);
 
   if (match == null) {
@@ -100,7 +101,7 @@ async function processParser(name: ParserName) {
       break;
 
     case "tree-sitter-markdown":
-      //   await gitCloneOverload(name);
+      await gitCloneOverload(name);
       await buildParserWASM(name, {
         subPath: "tree-sitter-markdown",
       });
@@ -121,25 +122,25 @@ async function processParser(name: ParserName) {
     //   await buildParserWASM(name, { generate: true });
     //   break;
 
+    case "tree-sitter-elixir":
+    case "tree-sitter-query":
+    case "tree-sitter-perl":
+      await buildParserWASM(name, { generate: true });
+      break;
+
     default:
       await buildParserWASM(name);
   }
 }
 
 async function run() {
-  const grammars = Object.keys(packageInfo.devDependencies).filter(
-    (n) =>
-      (n.startsWith("tree-sitter-") &&
-        n !== "tree-sitter-cli" &&
-        n !== "tree-sitter") ||
-      n === "@elm-tooling/tree-sitter-elm"
-  ) as ParserName[];
+  const grammars = Object.keys(dependencies) as ParserName[];
 
   let hasErrors = false;
 
   await PromisePool.withConcurrency(os.cpus().length)
     .for(grammars)
-    .process(async (name: ParserName) => {
+    .process(async (name) => {
       try {
         await processParser(name);
       } catch (e) {

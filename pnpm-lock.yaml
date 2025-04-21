@@ -7,25 +7,10 @@ settings:
 importers:
 
   .:
-    devDependencies:
+    dependencies:
       '@elm-tooling/tree-sitter-elm':
-        specifier: ^5.7.0
-        version: 5.8.0(tree-sitter@0.21.1)
-      '@supercharge/promise-pool':
-        specifier: ^3.1.1
-        version: 3.2.0
-      '@types/find-root':
-        specifier: ^1.1.4
-        version: 1.1.4
-      '@types/node':
-        specifier: ^20.14.0
-        version: 20.17.12
-      find-root:
-        specifier: ^1.1.0
-        version: 1.1.0
-      tree-sitter:
-        specifier: ^0.21.1
-        version: 0.21.1
+        specifier: 5.7.0
+        version: 5.7.0
       tree-sitter-agda:
         specifier: github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4
         version: https://codeload.github.com/tree-sitter/tree-sitter-agda/tar.gz/47802091de0cb8ac2533d67ac37e65692c5902c4(tree-sitter@0.21.1)
@@ -36,11 +21,8 @@ importers:
         specifier: github:tree-sitter/tree-sitter-c#deca017a554045b4c203e7ddff39ae64ff05e071
         version: https://codeload.github.com/tree-sitter/tree-sitter-c/tar.gz/deca017a554045b4c203e7ddff39ae64ff05e071(tree-sitter@0.21.1)
       tree-sitter-c-sharp:
-        specifier: ^0.19.0
-        version: 0.19.1
-      tree-sitter-cli:
-        specifier: ^0.24.7
-        version: 0.24.7
+        specifier: 0.19.0
+        version: 0.19.0
       tree-sitter-clojure:
         specifier: github:sogaiu/tree-sitter-clojure#f4236d4da8aa92bc105d9c118746474c608e6af7
         version: https://codeload.github.com/sogaiu/tree-sitter-clojure/tar.gz/f4236d4da8aa92bc105d9c118746474c608e6af7
@@ -48,7 +30,7 @@ importers:
         specifier: github:tree-sitter/tree-sitter-cpp#9d412ba7e597fe158f209da33e60f31b1f0df967
         version: https://codeload.github.com/tree-sitter/tree-sitter-cpp/tar.gz/9d412ba7e597fe158f209da33e60f31b1f0df967(tree-sitter@0.21.1)
       tree-sitter-css:
-        specifier: ^0.19.0
+        specifier: 0.19.0
         version: 0.19.0
       tree-sitter-dart:
         specifier: github:UserNobody14/tree-sitter-dart#9ac03bb2154316624fb4c41fe0f372a5f1597b43
@@ -114,13 +96,13 @@ importers:
         specifier: github:tree-sitter/tree-sitter-rust#36ae187ed6dd3803a8a89dbb54f3124c8ee74662
         version: https://codeload.github.com/tree-sitter/tree-sitter-rust/tar.gz/36ae187ed6dd3803a8a89dbb54f3124c8ee74662
       tree-sitter-scala:
-        specifier: ^0.23.4
+        specifier: 0.23.4
         version: 0.23.4(tree-sitter@0.21.1)
       tree-sitter-scss:
         specifier: github:serenadeai/tree-sitter-scss#c478c6868648eff49eb04a4df90d703dc45b312a
         version: https://codeload.github.com/serenadeai/tree-sitter-scss/tar.gz/c478c6868648eff49eb04a4df90d703dc45b312a
       tree-sitter-sparql:
-        specifier: ^0.1.0
+        specifier: 0.1.0
         version: 0.1.0
       tree-sitter-swift:
         specifier: github:alex-pinkus/tree-sitter-swift#7e4ccc97a25315022a70b730085deccd5680a39b
@@ -137,6 +119,25 @@ importers:
       tree-sitter-yaml:
         specifier: github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267
         version: '@tree-sitter-grammars/tree-sitter-yaml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-yaml/tar.gz/7b03feefd36b5f155465ca736c6304aca983b267(tree-sitter@0.21.1)'
+    devDependencies:
+      '@supercharge/promise-pool':
+        specifier: ^3.1.1
+        version: 3.2.0
+      '@types/find-root':
+        specifier: ^1.1.4
+        version: 1.1.4
+      '@types/node':
+        specifier: ^20.14.0
+        version: 20.17.12
+      find-root:
+        specifier: ^1.1.0
+        version: 1.1.0
+      tree-sitter:
+        specifier: ^0.21.1
+        version: 0.21.1
+      tree-sitter-cli:
+        specifier: ^0.24.7
+        version: 0.24.7
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.17.12)(typescript@5.7.3)
@@ -150,13 +151,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@elm-tooling/tree-sitter-elm@5.8.0':
-    resolution: {integrity: sha512-AOCJlUumWqetQxXkRf3ZpztbTNeyBB2NfuOKokZgLSF7TboctgOCpR7MMrJk9/uGn8rPbcg1gOyhZOQBl1MOpQ==}
-    peerDependencies:
-      tree-sitter: ^0.21.1
-    peerDependenciesMeta:
-      tree-sitter:
-        optional: true
+  '@elm-tooling/tree-sitter-elm@5.7.0':
+    resolution: {integrity: sha512-ezKHIczyZx6bFtktLFRPbvW/7LzL0XdI1Y5OoxkNaSrfh2m0Bm8yilbB4Hya4VQN7mJktXhhzAMGab8nKm/2Bw==}
 
   '@ganezdragon/tree-sitter-perl@https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e':
     resolution: {tarball: https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e}
@@ -293,8 +289,8 @@ packages:
       tree_sitter:
         optional: true
 
-  tree-sitter-c-sharp@0.19.1:
-    resolution: {integrity: sha512-MaUqxVBH9UU+FEKptqOK6EhQ/vuRolZfavtWlXDx+HK7J5b8g8mz4b1SBhaXZaVY4sl3P1wIwVupSV6rxscrUw==}
+  tree-sitter-c-sharp@0.19.0:
+    resolution: {integrity: sha512-Y2T7lisxbJHYg44hxE8XQPFpJLUE5jZSfKO4jyOuNLFS0wpN1wux6SucU4aWTkTfyaiyGWZ10GvEIQ++ZDAVTQ==}
 
   tree-sitter-c@https://codeload.github.com/tree-sitter/tree-sitter-c/tar.gz/deca017a554045b4c203e7ddff39ae64ff05e071:
     resolution: {tarball: https://codeload.github.com/tree-sitter/tree-sitter-c/tar.gz/deca017a554045b4c203e7ddff39ae64ff05e071}
@@ -543,12 +539,9 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@elm-tooling/tree-sitter-elm@5.8.0(tree-sitter@0.21.1)':
+  '@elm-tooling/tree-sitter-elm@5.7.0':
     dependencies:
-      node-addon-api: 8.3.0
-      node-gyp-build: 4.8.4
-    optionalDependencies:
-      tree-sitter: 0.21.1
+      nan: 2.22.0
 
   '@ganezdragon/tree-sitter-perl@https://codeload.github.com/ganezdragon/tree-sitter-perl/tar.gz/3d3a95ee6645d7bcd993e77b252ffd33fd297c8e':
     dependencies:
@@ -642,7 +635,7 @@ snapshots:
       node-gyp-build: 4.8.4
       tree-sitter: 0.21.1
 
-  tree-sitter-c-sharp@0.19.1:
+  tree-sitter-c-sharp@0.19.0:
     dependencies:
       nan: 2.22.0
 

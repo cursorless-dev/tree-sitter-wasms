@@ -117,6 +117,7 @@ async function processParser(name: ParserName) {
 
     case "tree-sitter-latex":
     case "tree-sitter-swift":
+    case "tree-sitter-perl":
       await buildParserWASM(name, { generate: true });
       break;
 

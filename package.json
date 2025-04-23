@@ -4,8 +4,7 @@
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",
-  "author": "Cursorless Dev",
-  "license": "Unlicense",
+  "license": "MIT",
   "files": [
     "out"
   ],

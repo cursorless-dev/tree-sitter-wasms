@@ -54,6 +54,7 @@
     "tree-sitter-query": "github:tree-sitter-grammars/tree-sitter-query#930202c2a80965a7a9ca018b5b2a08b25dfa7f12",
     "tree-sitter-ruby": "github:tree-sitter/tree-sitter-ruby#dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b",
     "tree-sitter-rust": "github:tree-sitter/tree-sitter-rust#36ae187ed6dd3803a8a89dbb54f3124c8ee74662",
+    "tree-sitter-r": "^1.1.0",
     "tree-sitter-scala": "0.23.4",
     "tree-sitter-scss": "github:serenadeai/tree-sitter-scss#c478c6868648eff49eb04a4df90d703dc45b312a",
     "tree-sitter-sparql": "0.1.0",

@@ -107,6 +107,9 @@ importers:
       tree-sitter-query:
         specifier: github:tree-sitter-grammars/tree-sitter-query#930202c2a80965a7a9ca018b5b2a08b25dfa7f12
         version: https://codeload.github.com/tree-sitter-grammars/tree-sitter-query/tar.gz/930202c2a80965a7a9ca018b5b2a08b25dfa7f12(tree-sitter@0.21.1)
+      tree-sitter-r:
+        specifier: github:r-lib/tree-sitter-r#v1.1.0
+        version: https://codeload.github.com/r-lib/tree-sitter-r/tar.gz/ac939363ced63a5fd39a8bd5e7891bbe06b5738d(tree-sitter@0.21.1)
       tree-sitter-ruby:
         specifier: github:tree-sitter/tree-sitter-ruby#dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b
         version: https://codeload.github.com/tree-sitter/tree-sitter-ruby/tar.gz/dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b(tree-sitter@0.21.1)
@@ -563,6 +566,16 @@ packages:
     peerDependencies:
       tree-sitter: ^0.21.1
 
+  tree-sitter-r@https://codeload.github.com/r-lib/tree-sitter-r/tar.gz/ac939363ced63a5fd39a8bd5e7891bbe06b5738d:
+    resolution: {tarball: https://codeload.github.com/r-lib/tree-sitter-r/tar.gz/ac939363ced63a5fd39a8bd5e7891bbe06b5738d}
+    version: 1.1.0
+    peerDependencies:
+      tree-sitter: ^0.21.0
+      tree_sitter: '*'
+    peerDependenciesMeta:
+      tree_sitter:
+        optional: true
+
   tree-sitter-ruby@https://codeload.github.com/tree-sitter/tree-sitter-ruby/tar.gz/dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b:
     resolution: {tarball: https://codeload.github.com/tree-sitter/tree-sitter-ruby/tar.gz/dc2d7d6b50f9975bc3c35bbec0ba11b2617b736b}
     version: 0.21.0
@@ -993,6 +1006,12 @@ snapshots:
       tree-sitter: 0.21.1
 
   tree-sitter-query@https://codeload.github.com/tree-sitter-grammars/tree-sitter-query/tar.gz/930202c2a80965a7a9ca018b5b2a08b25dfa7f12(tree-sitter@0.21.1):
+    dependencies:
+      node-addon-api: 8.3.0
+      node-gyp-build: 4.8.4
+      tree-sitter: 0.21.1
+
+  tree-sitter-r@https://codeload.github.com/r-lib/tree-sitter-r/tar.gz/ac939363ced63a5fd39a8bd5e7891bbe06b5738d(tree-sitter@0.21.1):
     dependencies:
       node-addon-api: 8.3.0
       node-gyp-build: 4.8.4

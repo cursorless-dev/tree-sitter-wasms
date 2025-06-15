@@ -35,6 +35,7 @@
     "tree-sitter-css": "0.19.0",
     "tree-sitter-dart": "github:UserNobody14/tree-sitter-dart#9ac03bb2154316624fb4c41fe0f372a5f1597b43",
     "tree-sitter-elixir": "github:elixir-lang/tree-sitter-elixir#02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e",
+    "tree-sitter-gdscript": "5.0.1",
     "tree-sitter-gleam": "github:gleam-lang/tree-sitter-gleam#2012f294baacf30e7a62414754021284377366c6",
     "tree-sitter-go": "github:tree-sitter/tree-sitter-go#bbaa67a180cfe0c943e50c55130918be8efb20bd",
     "tree-sitter-haskell": "github:tree-sitter/tree-sitter-haskell#a50070d5bb5bd5c1281740a6102ecf1f4b0c4f19",

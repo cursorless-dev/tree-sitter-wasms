@@ -56,6 +56,9 @@ importers:
       tree-sitter-elixir:
         specifier: github:elixir-lang/tree-sitter-elixir#02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e
         version: https://codeload.github.com/elixir-lang/tree-sitter-elixir/tar.gz/02a6f7fd4be28dd94ee4dd2ca19cb777053ea74e(tree-sitter@0.21.1)
+      tree-sitter-gdscript:
+        specifier: 5.0.1
+        version: 5.0.1(tree-sitter@0.21.1)
       tree-sitter-gleam:
         specifier: github:gleam-lang/tree-sitter-gleam#2012f294baacf30e7a62414754021284377366c6
         version: https://codeload.github.com/gleam-lang/tree-sitter-gleam/tar.gz/2012f294baacf30e7a62414754021284377366c6
@@ -342,6 +345,10 @@ packages:
     resolution: {integrity: sha512-8VOpLHFrOQlAH+qA0ZzuGRlALRA6/LVh8QJldbrC4DY0hXoMP0l4Acq8TzFC018HztWiRqyCEj2aTWY2UvnJUg==}
     engines: {node: ^18 || ^20 || >= 21}
 
+  node-addon-api@8.4.0:
+    resolution: {integrity: sha512-D9DI/gXHvVmjHS08SVch0Em8G5S1P+QWtU31appcKT/8wFSPRcdHadIFSAntdMMVM5zz+/DL+bL/gz3UDppqtg==}
+    engines: {node: ^18 || ^20 || >= 21}
+
   node-gyp-build@4.8.4:
     resolution: {integrity: sha512-LA4ZjwlnUblHVgq0oBF3Jl/6h/Nvs5fzBLwdEF4nuxnFdsfajde4WfxtJr3CaiH+F6ewcIB/q4jQ4UzPyid+CQ==}
     hasBin: true
@@ -470,6 +477,14 @@ packages:
     version: 0.3.3
     peerDependencies:
       tree-sitter: ^0.21.0
+
+  tree-sitter-gdscript@5.0.1:
+    resolution: {integrity: sha512-iHrcmZ6N61eKsr+g2dB0KlevrII3ofEE2Y5NDklaKLO4kssobKrGq1ob7mLw/NxWNuvKKApsSUFnID9fIaVWxQ==}
+    peerDependencies:
+      tree-sitter: ^0.21.1
+    peerDependenciesMeta:
+      tree-sitter:
+        optional: true
 
   tree-sitter-gleam@https://codeload.github.com/gleam-lang/tree-sitter-gleam/tar.gz/2012f294baacf30e7a62414754021284377366c6:
     resolution: {tarball: https://codeload.github.com/gleam-lang/tree-sitter-gleam/tar.gz/2012f294baacf30e7a62414754021284377366c6}
@@ -816,6 +831,8 @@ snapshots:
 
   node-addon-api@8.3.0: {}
 
+  node-addon-api@8.4.0: {}
+
   node-gyp-build@4.8.4: {}
 
   once@1.4.0:
@@ -939,6 +956,13 @@ snapshots:
     dependencies:
       node-addon-api: 7.1.1
       node-gyp-build: 4.8.4
+      tree-sitter: 0.21.1
+
+  tree-sitter-gdscript@5.0.1(tree-sitter@0.21.1):
+    dependencies:
+      node-addon-api: 8.4.0
+      node-gyp-build: 4.8.4
+    optionalDependencies:
       tree-sitter: 0.21.1
 
   tree-sitter-gleam@https://codeload.github.com/gleam-lang/tree-sitter-gleam/tar.gz/2012f294baacf30e7a62414754021284377366c6:

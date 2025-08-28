@@ -1,5 +1,4 @@
 name: Run Tests
-permissions: read-all
 
 on:
   pull_request:

@@ -51,6 +51,7 @@
     "tree-sitter-nix": "github:nix-community/tree-sitter-nix#66e3e9ce9180ae08fc57372061006ef83f0abde7",
     "tree-sitter-perl": "github:ganezdragon/tree-sitter-perl#8d48b29910d2094cb1fc5c9c4ed8917c26b907de",
     "tree-sitter-php": "github:tree-sitter/tree-sitter-php#f7cf7348737d8cff1b13407a0bfedce02ee7b046",
+    "tree-sitter-properties": "github:tree-sitter-grammars/tree-sitter-properties#6310671b24d4e04b803577b1c675d765cbd5773b",
     "tree-sitter-python": "github:tree-sitter/tree-sitter-python#71778c2a472ed00a64abf4219544edbf8e4b86d7",
     "tree-sitter-query": "github:tree-sitter-grammars/tree-sitter-query#930202c2a80965a7a9ca018b5b2a08b25dfa7f12",
     "tree-sitter-r": "github:r-lib/tree-sitter-r#v1.1.0",

@@ -1,6 +1,6 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",
@@ -41,7 +41,7 @@
     "tree-sitter-haskell": "github:tree-sitter/tree-sitter-haskell#a50070d5bb5bd5c1281740a6102ecf1f4b0c4f19",
     "tree-sitter-hcl": "github:tree-sitter-grammars/tree-sitter-hcl#e135399cb31b95fac0760b094556d1d5ce84acf0",
     "tree-sitter-html": "github:tree-sitter/tree-sitter-html#e4d834eb4918df01dcad5c27d1b15d56e3bd94cd",
-    "tree-sitter-java": "github:tree-sitter/tree-sitter-java#ac14b4b1884102839455d32543ab6d53ae089ab7",
+    "tree-sitter-java": "0.23.5",
     "tree-sitter-javascript": "github:tree-sitter/tree-sitter-javascript#391a8fcc48a11f63bf18ec9885f6f069e760949a",
     "tree-sitter-json": "github:tree-sitter/tree-sitter-json#94f5c527b2965465956c2000ed6134dd24daf2a7",
     "tree-sitter-kotlin": "github:fwcd/tree-sitter-kotlin#76f53c48d29e8588934fb55b0240d7bdfe00bfe5",

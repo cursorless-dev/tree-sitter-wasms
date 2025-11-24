@@ -147,8 +147,8 @@ importers:
         specifier: github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267
         version: '@tree-sitter-grammars/tree-sitter-yaml@https://codeload.github.com/tree-sitter-grammars/tree-sitter-yaml/tar.gz/7b03feefd36b5f155465ca736c6304aca983b267(tree-sitter@0.21.1)'
       tree-sitter-zig:
-        specifier: github:tree-sitter/zig-tree-sitter#a53dac49d66562006e84dd11211b7ae40db68263
-        version: zig-tree-sitter#a53dac49d66562006e84dd11211b7ae40db68263@https://codeload.github.com/tree-sitter/zig-tree-sitter/tar.gz/a53dac49d66562006e84dd11211b7ae40db68263
+        specifier: github:tree-sitter-grammars/tree-sitter-zig#6479aa13f32f701c383083d8b28360ebd682fb7d
+        version: https://codeload.github.com/tree-sitter-grammars/tree-sitter-zig/tar.gz/6479aa13f32f701c383083d8b28360ebd682fb7d(tree-sitter@0.21.1)
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@types/node@20.17.12)(typescript@5.7.3)
@@ -349,6 +349,10 @@ packages:
 
   node-addon-api@8.4.0:
     resolution: {integrity: sha512-D9DI/gXHvVmjHS08SVch0Em8G5S1P+QWtU31appcKT/8wFSPRcdHadIFSAntdMMVM5zz+/DL+bL/gz3UDppqtg==}
+    engines: {node: ^18 || ^20 || >= 21}
+
+  node-addon-api@8.5.0:
+    resolution: {integrity: sha512-/bRZty2mXUIFY/xU5HLvveNHlswNJej+RnxBjOMkidWfwZzgTbPG1E3K5TOxRLOR+5hX7bSofy8yf1hZevMS8A==}
     engines: {node: ^18 || ^20 || >= 21}
 
   node-gyp-build@4.8.4:
@@ -655,6 +659,15 @@ packages:
       tree_sitter:
         optional: true
 
+  tree-sitter-zig@https://codeload.github.com/tree-sitter-grammars/tree-sitter-zig/tar.gz/6479aa13f32f701c383083d8b28360ebd682fb7d:
+    resolution: {tarball: https://codeload.github.com/tree-sitter-grammars/tree-sitter-zig/tar.gz/6479aa13f32f701c383083d8b28360ebd682fb7d}
+    version: 1.1.2
+    peerDependencies:
+      tree-sitter: ^0.22.4
+    peerDependenciesMeta:
+      tree-sitter:
+        optional: true
+
   tree-sitter@0.21.1:
     resolution: {integrity: sha512-7dxoA6kYvtgWw80265MyqJlkRl4yawIjO7S5MigytjELkX43fV2WsAXzsNfO7sBpPPCF5Gp0+XzHk0DwLCq3xQ==}
 
@@ -700,10 +713,6 @@ packages:
   yn@3.1.1:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
-
-  zig-tree-sitter#a53dac49d66562006e84dd11211b7ae40db68263@https://codeload.github.com/tree-sitter/zig-tree-sitter/tar.gz/a53dac49d66562006e84dd11211b7ae40db68263:
-    resolution: {tarball: https://codeload.github.com/tree-sitter/zig-tree-sitter/tar.gz/a53dac49d66562006e84dd11211b7ae40db68263}
-    version: 0.0.0
 
 snapshots:
 
@@ -849,6 +858,8 @@ snapshots:
   node-addon-api@8.0.0: {}
 
   node-addon-api@8.4.0: {}
+
+  node-addon-api@8.5.0: {}
 
   node-gyp-build@4.8.4: {}
 
@@ -1111,6 +1122,13 @@ snapshots:
       node-gyp-build: 4.8.4
       tree-sitter: 0.21.1
 
+  tree-sitter-zig@https://codeload.github.com/tree-sitter-grammars/tree-sitter-zig/tar.gz/6479aa13f32f701c383083d8b28360ebd682fb7d(tree-sitter@0.21.1):
+    dependencies:
+      node-addon-api: 8.5.0
+      node-gyp-build: 4.8.4
+    optionalDependencies:
+      tree-sitter: 0.21.1
+
   tree-sitter@0.21.1:
     dependencies:
       node-addon-api: 8.4.0
@@ -1153,5 +1171,3 @@ snapshots:
   wrappy@1.0.2: {}
 
   yn@3.1.1: {}
-
-  zig-tree-sitter#a53dac49d66562006e84dd11211b7ae40db68263@https://codeload.github.com/tree-sitter/zig-tree-sitter/tar.gz/a53dac49d66562006e84dd11211b7ae40db68263: {}

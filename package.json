@@ -24,7 +24,7 @@
     "@elm-tooling/tree-sitter-elm": "5.7.0",
     "@supercharge/promise-pool": "^3.1.1",
     "@types/find-root": "^1.1.4",
-    "@types/node": "^20.14.0",
+    "@types/node": "^22.19.15",
     "find-root": "^1.1.0",
     "tree-sitter-agda": "github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4",
     "tree-sitter-bash": "github:tree-sitter/tree-sitter-bash#2fbd860f802802ca76a6661ce025b3a3bca2d3ed",

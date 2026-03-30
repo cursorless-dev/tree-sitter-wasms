@@ -135,8 +135,8 @@ importers:
         specifier: github:alex-pinkus/tree-sitter-swift#7e4ccc97a25315022a70b730085deccd5680a39b
         version: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/7e4ccc97a25315022a70b730085deccd5680a39b
       tree-sitter-talon:
-        specifier: github:pokey/tree-sitter-talon#f69923ea2490530babe105f0a36434e4a23e127e
-        version: https://codeload.github.com/pokey/tree-sitter-talon/tar.gz/f69923ea2490530babe105f0a36434e4a23e127e(tree-sitter@0.21.1)
+        specifier: github:wenkokke/tree-sitter-talon#02c6f0878dbfc3f9922f494048c02370ae681040
+        version: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/02c6f0878dbfc3f9922f494048c02370ae681040(tree-sitter@0.21.1)
       tree-sitter-typescript:
         specifier: github:tree-sitter/tree-sitter-typescript#4ad3010c91d700026d036b5230e2d99ba94ae8a4
         version: https://codeload.github.com/tree-sitter/tree-sitter-typescript/tar.gz/4ad3010c91d700026d036b5230e2d99ba94ae8a4(tree-sitter@0.21.1)
@@ -643,9 +643,9 @@ packages:
     resolution: {tarball: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/7e4ccc97a25315022a70b730085deccd5680a39b}
     version: 0.3.6
 
-  tree-sitter-talon@https://codeload.github.com/pokey/tree-sitter-talon/tar.gz/f69923ea2490530babe105f0a36434e4a23e127e:
-    resolution: {tarball: https://codeload.github.com/pokey/tree-sitter-talon/tar.gz/f69923ea2490530babe105f0a36434e4a23e127e}
-    version: 4.0.0
+  tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/02c6f0878dbfc3f9922f494048c02370ae681040:
+    resolution: {tarball: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/02c6f0878dbfc3f9922f494048c02370ae681040}
+    version: 5.0.0
     peerDependencies:
       tree-sitter: ^0.21.1
 
@@ -1110,9 +1110,9 @@ snapshots:
       tree-sitter-cli: 0.20.6
       which: 2.0.2
 
-  tree-sitter-talon@https://codeload.github.com/pokey/tree-sitter-talon/tar.gz/f69923ea2490530babe105f0a36434e4a23e127e(tree-sitter@0.21.1):
+  tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/02c6f0878dbfc3f9922f494048c02370ae681040(tree-sitter@0.21.1):
     dependencies:
-      node-addon-api: 7.1.1
+      node-addon-api: 8.5.0
       node-gyp-build: 4.8.4
       tree-sitter: 0.21.1
 

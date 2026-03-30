@@ -2,6 +2,10 @@ name: Deploy
 
 on: workflow_dispatch
 
+permissions:
+  id-token: write
+  contents: write
+
 jobs:
   publish-npm:
     name: Publish to NPM
@@ -10,40 +14,27 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: .nvmrc
-          cache: pnpm
-
-      - name: Setup Emscripten
-        uses: mymindstorm/setup-emsdk@v14
-        with:
-          version: 3.1.74
-
-      - name: Install dependencies
-        run: pnpm --color install
-
-      - name: Build
-        run: pnpm build
+      - name: Setup and build
+        uses: ./.github/actions/setup-and-build
 
       - name: Read version from package.json
         run: |
           VERSION=$(node -p "require('./package.json').version")
           echo "version=$VERSION" >> $GITHUB_ENV
 
+      - name: Check whether this version is already published
+        run: |
+          if git ls-remote --exit-code --tags origin "refs/tags/${{ env.version }}" > /dev/null; then
+            echo "Version ${{ env.version }} is already tagged."
+            exit 1
+          fi
+
+      - name: Publish to NPM
+        run: pnpm publish --access public
+
       - name: Create Git tag
         run: |
           git tag ${{ env.version }}
           git push origin ${{ env.version }}
-
-      - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v3
-        with:
-          access: public
-          token: ${{ secrets.NPM_TOKEN }}

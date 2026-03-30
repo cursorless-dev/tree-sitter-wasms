@@ -1,6 +1,6 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "packageManager": "pnpm@10.0.0",
   "main": "bindings/node",
@@ -18,7 +18,7 @@
   },
   "scripts": {
     "clean": "rm -rf out",
-    "build": "ts-node build.ts"
+    "build": "tsx ./build.ts"
   },
   "devDependencies": {
     "@elm-tooling/tree-sitter-elm": "5.7.0",
@@ -68,7 +68,7 @@
     "tree-sitter-yaml": "github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267",
     "tree-sitter-zig": "github:tree-sitter-grammars/tree-sitter-zig#6479aa13f32f701c383083d8b28360ebd682fb7d",
     "tree-sitter": "^0.21.1",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.7.3"
   }
 }

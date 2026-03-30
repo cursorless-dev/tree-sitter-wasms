@@ -32,7 +32,7 @@ jobs:
           fi
 
       - name: Publish to NPM
-        run: pnpm publish --access public
+        run: npm publish --access public
 
       - name: Create Git tag
         run: |

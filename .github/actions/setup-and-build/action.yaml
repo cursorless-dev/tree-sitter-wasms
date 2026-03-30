@@ -1,0 +1,27 @@
+name: Setup and build
+
+runs:
+  using: composite
+
+  steps:
+    - name: Install pnpm
+      uses: pnpm/action-setup@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: .nvmrc
+        cache: pnpm
+
+    - name: Install dependencies
+      run: pnpm --color install --frozen-lockfile
+      shell: bash
+
+    - name: Setup Emscripten
+      uses: mymindstorm/setup-emsdk@v14
+      with:
+        version: 3.1.74
+
+    - name: Build
+      run: npm run build
+      shell: bash

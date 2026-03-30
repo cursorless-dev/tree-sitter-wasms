@@ -14,10 +14,6 @@ runs:
         cache: pnpm
         registry-url: https://registry.npmjs.org
 
-    - name: Update npm
-      run: npm install --global npm@latest
-      shell: bash
-
     - name: Install dependencies
       run: pnpm --color install --frozen-lockfile
       shell: bash

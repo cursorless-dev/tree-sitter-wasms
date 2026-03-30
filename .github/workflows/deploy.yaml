@@ -34,7 +34,7 @@ jobs:
           fi
 
       - name: Publish to NPM
-        run: npm publish --access public
+        run: npx -y npm@11.6.2 publish --access public
 
       - name: Create Git tag
         run: |

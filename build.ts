@@ -141,22 +141,33 @@ async function run() {
       n === "@elm-tooling/tree-sitter-elm",
   ) as ParserName[];
 
+  if (grammars.length === 0) {
+    throw new Error("❗ No parsers found in dependencies");
+  }
+
   let hasErrors = false;
+  const [initialGrammar, ...remainingGrammars] = grammars;
+
+  const processGrammar = async (name: ParserName) => {
+    try {
+      await processParser(name);
+    } catch (error) {
+      if (error instanceof ParserError) {
+        console.error(`${error.message}:\n`, error.value);
+      } else {
+        console.error(error);
+      }
+      hasErrors = true;
+    }
+  };
+
+  // tree-sitter-cli@0.26 downloads/extracts wasi-sdk into a shared cache path.
+  // Warm that cache once before the parallel builds to avoid extraction races.
+  await processGrammar(initialGrammar);
 
   await PromisePool.withConcurrency(os.cpus().length)
-    .for(grammars)
-    .process(async (name) => {
-      try {
-        await processParser(name);
-      } catch (error) {
-        if (error instanceof ParserError) {
-          console.error(`${error.message}:\n`, error.value);
-        } else {
-          console.error(error);
-        }
-        hasErrors = true;
-      }
-    });
+    .for(remainingGrammars)
+    .process(processGrammar);
 
   // oxlint-disable-next-line typescript/no-unnecessary-condition
   if (hasErrors) {

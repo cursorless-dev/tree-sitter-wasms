@@ -1,24 +1,34 @@
-import { PromisePool } from "@supercharge/promise-pool";
-import findRoot from "find-root";
+import { exec as execSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
+import { exit } from "node:process";
+import { fileURLToPath } from "node:url";
 import util from "node:util";
-import packageInfo from "./package.json";
+import { PromisePool } from "@supercharge/promise-pool";
+import findRoot from "find-root";
+import packageInfo from "./package.json" with { type: "json" };
 
-class ParserError {
-  constructor(public message: string, public value: any) {}
+class ParserError extends Error {
+  constructor(
+    public message: string,
+    public value: unknown,
+  ) {
+    super(message);
+    this.name = "ParserError";
+  }
 }
 
+const __dirname = import.meta.dirname;
 const dependencies = packageInfo.devDependencies;
 type ParserName = keyof typeof dependencies;
-const exec = util.promisify(require("child_process").exec);
+const exec = util.promisify(execSync);
 const outDir = path.join(__dirname, "out");
 
 function getPackagePath(name: string) {
   try {
-    return findRoot(require.resolve(name));
-  } catch (_) {
+    return findRoot(fileURLToPath(import.meta.resolve(name)));
+  } catch {
     return path.join(__dirname, "node_modules", name);
   }
 }
@@ -26,7 +36,7 @@ function getPackagePath(name: string) {
 async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
   const value = dependencies[name];
-  const match = value.match(/^github:(\S+)#(\S+)$/);
+  const match = /^github:(\S+)#(\S+)$/.exec(value);
 
   if (match == null) {
     throw new ParserError(`❗ Failed to parse git repo for ${name}`, value);
@@ -42,16 +52,16 @@ async function gitCloneOverload(name: ParserName) {
     await exec(`git clone ${repoUrl} ${packagePath}`);
     process.chdir(packagePath);
     await exec(`git reset --hard ${commitHash}`);
-  } catch (e) {
-    throw new ParserError(`❗Failed to clone git repo for ${name}`, e);
+  } catch (error) {
+    throw new ParserError(`❗Failed to clone git repo for ${name}`, error);
   }
 }
 
 async function buildParserWASM(
   name: ParserName,
-  { subPath, generate }: { subPath?: string; generate?: boolean } = {}
+  { subPath, generate }: { subPath?: string; generate?: boolean } = {},
 ) {
-  const label = subPath ? path.join(name, subPath) : name;
+  const label = subPath != null ? path.join(name, subPath) : name;
 
   const cliPackagePath = getPackagePath("tree-sitter-cli");
   const packagePath = getPackagePath(name);
@@ -61,7 +71,7 @@ async function buildParserWASM(
 
   console.log(`⏳ Building ${label}`);
 
-  const cwd = subPath ? path.join(packagePath, subPath) : packagePath;
+  const cwd = subPath != null ? path.join(packagePath, subPath) : packagePath;
 
   if (!fs.existsSync(cwd)) {
     throw new ParserError(`❗ Failed to find cwd ${label}`, cwd);
@@ -70,8 +80,8 @@ async function buildParserWASM(
   if (generate) {
     try {
       await exec(generateCommand, { cwd });
-    } catch (e) {
-      throw new ParserError(`❗ Failed to generate ${label}`, e);
+    } catch (error) {
+      throw new ParserError(`❗ Failed to generate ${label}`, error);
     }
   }
 
@@ -79,12 +89,13 @@ async function buildParserWASM(
     await exec(buildCommand, { cwd });
     await exec(`mv *.wasm ${outDir}`, { cwd });
     console.log(`✅ Finished building ${label}`);
-  } catch (e) {
-    throw new ParserError(`❗ Failed to build ${label}`, e);
+  } catch (error) {
+    throw new ParserError(`❗ Failed to build ${label}`, error);
   }
 }
 
 async function processParser(name: ParserName) {
+  // oxlint-disable-next-line typescript/switch-exhaustiveness-check
   switch (name) {
     case "tree-sitter-php":
       await buildParserWASM(name, { subPath: "php" });
@@ -123,37 +134,53 @@ async function processParser(name: ParserName) {
 }
 
 async function run() {
+  // oxlint-disable-next-line typescript/no-unsafe-type-assertion
   const grammars = Object.keys(dependencies).filter(
     (n) =>
       (n.startsWith("tree-sitter-") && n !== "tree-sitter-cli") ||
-      n === "@elm-tooling/tree-sitter-elm"
+      n === "@elm-tooling/tree-sitter-elm",
   ) as ParserName[];
 
+  if (grammars.length === 0) {
+    throw new Error("❗ No parsers found in dependencies");
+  }
+
   let hasErrors = false;
+  const [initialGrammar, ...remainingGrammars] = grammars;
+
+  const processGrammar = async (name: ParserName) => {
+    try {
+      await processParser(name);
+    } catch (error) {
+      if (error instanceof ParserError) {
+        console.error(`${error.message}:\n`, error.value);
+      } else {
+        console.error(error);
+      }
+      hasErrors = true;
+    }
+  };
+
+  // tree-sitter-cli@0.26 downloads/extracts wasi-sdk into a shared cache path.
+  // Warm that cache once before the parallel builds to avoid extraction races.
+  await processGrammar(initialGrammar);
 
   await PromisePool.withConcurrency(os.cpus().length)
-    .for(grammars)
-    .process(async (name) => {
-      try {
-        await processParser(name);
-      } catch (e) {
-        if (e instanceof ParserError) {
-          console.error(e.message + ":\n", e.value);
-        } else {
-          console.error(e);
-        }
-        hasErrors = true;
-      }
-    });
+    .for(remainingGrammars)
+    .process(processGrammar);
 
+  // oxlint-disable-next-line typescript/no-unnecessary-condition
   if (hasErrors) {
-    throw new Error();
+    throw new Error("❗Failed to build some parsers");
   }
 }
 
 fs.mkdirSync(outDir);
 process.chdir(outDir);
 
-run().catch(() => {
-  process.exit(1);
-});
+try {
+  await run();
+} catch (error) {
+  console.error(error);
+  exit(1);
+}

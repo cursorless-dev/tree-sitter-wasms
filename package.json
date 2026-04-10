@@ -6,6 +6,7 @@
   "main": "bindings/node",
   "author": "Cursorless Dev",
   "license": "Unlicense",
+  "type": "module",
   "files": [
     "out"
   ],
@@ -18,19 +19,29 @@
   },
   "scripts": {
     "clean": "rm -rf out",
-    "build": "tsx ./build.ts"
+    "build": "tsx ./build.ts",
+    "lint": "npm run typecheck && npm run lint:ts && npm run lint:fmt",
+    "typecheck": "tsc -p . --noEmit",
+    "lint:ts": "oxlint -c oxlint.config.mts --deny-warnings .",
+    "lint:fmt": "oxfmt --check .",
+    "fix": "npm run fix:ts && npm run fix:fmt",
+    "fix:ts": "oxlint -c oxlint.config.mts --fix .",
+    "fix:fmt": "oxfmt ."
   },
   "devDependencies": {
     "@elm-tooling/tree-sitter-elm": "5.7.0",
-    "@supercharge/promise-pool": "^3.1.1",
+    "@supercharge/promise-pool": "^3.3.0",
     "@types/find-root": "^1.1.4",
     "@types/node": "^22.19.15",
     "find-root": "^1.1.0",
+    "oxfmt": "^0.44.0",
+    "oxlint-tsgolint": "^0.20.0",
+    "oxlint": "^1.59.0",
     "tree-sitter-agda": "github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4",
     "tree-sitter-bash": "github:tree-sitter/tree-sitter-bash#2fbd860f802802ca76a6661ce025b3a3bca2d3ed",
     "tree-sitter-c-sharp": "0.19.0",
     "tree-sitter-c": "github:tree-sitter/tree-sitter-c#deca017a554045b4c203e7ddff39ae64ff05e071",
-    "tree-sitter-cli": "^0.24.7",
+    "tree-sitter-cli": "^0.26.8",
     "tree-sitter-clojure": "github:sogaiu/tree-sitter-clojure#f4236d4da8aa92bc105d9c118746474c608e6af7",
     "tree-sitter-cpp": "github:tree-sitter/tree-sitter-cpp#9d412ba7e597fe158f209da33e60f31b1f0df967",
     "tree-sitter-css": "0.19.0",
@@ -67,8 +78,8 @@
     "tree-sitter-xml": "github:tree-sitter-grammars/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",
     "tree-sitter-yaml": "github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267",
     "tree-sitter-zig": "github:tree-sitter-grammars/tree-sitter-zig#6479aa13f32f701c383083d8b28360ebd682fb7d",
-    "tree-sitter": "^0.21.1",
+    "tree-sitter": "^0.25.0",
     "tsx": "^4.21.0",
-    "typescript": "^5.7.3"
+    "typescript": "^6.0.2"
   }
 }

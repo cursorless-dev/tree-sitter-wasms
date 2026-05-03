@@ -1,9 +1,8 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.8.1",
+  "version": "0.9.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "packageManager": "pnpm@10.0.0",
-  "main": "bindings/node",
   "author": "Cursorless Dev",
   "license": "Unlicense",
   "type": "module",
@@ -34,9 +33,9 @@
     "@types/find-root": "^1.1.4",
     "@types/node": "^22.19.15",
     "find-root": "^1.1.0",
-    "oxfmt": "^0.44.0",
-    "oxlint-tsgolint": "^0.20.0",
-    "oxlint": "^1.59.0",
+    "oxfmt": "^0.47.0",
+    "oxlint-tsgolint": "^0.22.1",
+    "oxlint": "^1.62.0",
     "tree-sitter-agda": "github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4",
     "tree-sitter-bash": "github:tree-sitter/tree-sitter-bash#2fbd860f802802ca76a6661ce025b3a3bca2d3ed",
     "tree-sitter-c-sharp": "0.19.0",
@@ -73,13 +72,13 @@
     "tree-sitter-scss": "github:serenadeai/tree-sitter-scss#c478c6868648eff49eb04a4df90d703dc45b312a",
     "tree-sitter-sparql": "0.1.0",
     "tree-sitter-swift": "github:alex-pinkus/tree-sitter-swift#7e4ccc97a25315022a70b730085deccd5680a39b",
-    "tree-sitter-talon": "github:wenkokke/tree-sitter-talon#02c6f0878dbfc3f9922f494048c02370ae681040",
+    "tree-sitter-talon": "github:wenkokke/tree-sitter-talon#51385e9773b7eb96767281825a5a9877aa7368db",
     "tree-sitter-typescript": "github:tree-sitter/tree-sitter-typescript#4ad3010c91d700026d036b5230e2d99ba94ae8a4",
     "tree-sitter-xml": "github:tree-sitter-grammars/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",
     "tree-sitter-yaml": "github:tree-sitter-grammars/tree-sitter-yaml#7b03feefd36b5f155465ca736c6304aca983b267",
     "tree-sitter-zig": "github:tree-sitter-grammars/tree-sitter-zig#6479aa13f32f701c383083d8b28360ebd682fb7d",
     "tree-sitter": "^0.25.0",
     "tsx": "^4.21.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   }
 }

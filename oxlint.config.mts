@@ -18,6 +18,7 @@ const disabledRules = [
   "eslint/no-plusplus",
   "eslint/no-ternary",
   "eslint/no-undefined",
+  "eslint/no-underscore-dangle",
   "eslint/no-use-before-define",
   "eslint/no-void",
   "eslint/prefer-destructuring",
@@ -59,7 +60,6 @@ export default defineConfig({
   },
   env: {
     node: true,
-    mocha: true,
   },
   plugins: [
     "eslint",

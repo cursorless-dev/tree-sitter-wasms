@@ -10,7 +10,7 @@ import findRoot from "find-root";
 import packageInfo from "./package.json" with { type: "json" };
 
 class ParserError extends Error {
-  constructor(
+  public constructor(
     public message: string,
     public value: unknown,
   ) {

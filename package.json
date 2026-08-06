@@ -71,7 +71,7 @@
     "tree-sitter-scala": "0.23.4",
     "tree-sitter-scss": "github:serenadeai/tree-sitter-scss#c478c6868648eff49eb04a4df90d703dc45b312a",
     "tree-sitter-sparql": "0.1.0",
-    "tree-sitter-swift": "github:alex-pinkus/tree-sitter-swift#8d02b7ff390a17a43ce90c4e987c49315cfc4be6",
+    "tree-sitter-swift": "github:alex-pinkus/tree-sitter-swift#7e4ccc97a25315022a70b730085deccd5680a39b",
     "tree-sitter-talon": "github:wenkokke/tree-sitter-talon#51385e9773b7eb96767281825a5a9877aa7368db",
     "tree-sitter-typescript": "github:tree-sitter/tree-sitter-typescript#4ad3010c91d700026d036b5230e2d99ba94ae8a4",
     "tree-sitter-xml": "github:tree-sitter-grammars/tree-sitter-xml#648183d86f6f8ffb240ea11b4c6873f6f45d8b67",

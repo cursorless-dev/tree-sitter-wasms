@@ -141,8 +141,8 @@ importers:
         specifier: 0.1.0
         version: 0.1.0
       tree-sitter-swift:
-        specifier: github:alex-pinkus/tree-sitter-swift#ae648bc42aac4473122918bf792bc3b50158deef
-        version: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/ae648bc42aac4473122918bf792bc3b50158deef(tree-sitter@0.25.0)
+        specifier: github:alex-pinkus/tree-sitter-swift#31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5
+        version: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5(tree-sitter@0.25.0)
       tree-sitter-talon:
         specifier: github:wenkokke/tree-sitter-talon#51385e9773b7eb96767281825a5a9877aa7368db
         version: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/51385e9773b7eb96767281825a5a9877aa7368db(tree-sitter@0.25.0)
@@ -853,8 +853,9 @@ packages:
     resolution: {integrity: sha512-XjTcS3wdTy/2cc/ptMLc/WRyOLECRYcMTrSWyhZnj1oGSOWbHLTklgsgRICU3cPfb0vy+oZCC33M43u6R1HSCA==}
     hasBin: true
 
-  tree-sitter-cli@0.22.6:
-    resolution: {integrity: sha512-s7mYOJXi8sIFkt/nLJSqlYZP96VmKTc3BAwIX0rrrlRxWjWuCwixFqwzxWZBQz4R8Hx01iP7z3cT3ih58BUmZQ==}
+  tree-sitter-cli@0.23.2:
+    resolution: {integrity: sha512-kPPXprOqREX+C/FgUp2Qpt9jd0vSwn+hOgjzVv/7hapdoWpa+VeWId53rf4oNNd29ikheF12BYtGD/W90feMbA==}
+    engines: {node: '>=12.0.0'}
     hasBin: true
 
   tree-sitter-cli@0.26.8:
@@ -1050,11 +1051,11 @@ packages:
   tree-sitter-sparql@0.1.0:
     resolution: {integrity: sha512-qtNTPef7zCyrmxuhpI8dtppzEYR2A6XtyPUqJeqTr2soZLLqUacWXezkFFhMNrvyMUknN9Fgua9EEpt1/lG/Zw==}
 
-  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/ae648bc42aac4473122918bf792bc3b50158deef:
-    resolution: {tarball: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/ae648bc42aac4473122918bf792bc3b50158deef}
-    version: 0.4.3
+  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5:
+    resolution: {tarball: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5}
+    version: 0.7.3
     peerDependencies:
-      tree-sitter: ^0.21.1
+      tree-sitter: ^0.22.1
       tree_sitter: '*'
     peerDependenciesMeta:
       tree_sitter:
@@ -1628,7 +1629,7 @@ snapshots:
 
   tree-sitter-cli@0.20.8: {}
 
-  tree-sitter-cli@0.22.6: {}
+  tree-sitter-cli@0.23.2: {}
 
   tree-sitter-cli@0.26.8: {}
 
@@ -1774,12 +1775,12 @@ snapshots:
     dependencies:
       nan: 2.22.0
 
-  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/ae648bc42aac4473122918bf792bc3b50158deef(tree-sitter@0.25.0):
+  tree-sitter-swift@https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5(tree-sitter@0.25.0):
     dependencies:
       node-addon-api: 8.5.0
       node-gyp-build: 4.8.4
       tree-sitter: 0.25.0
-      tree-sitter-cli: 0.22.6
+      tree-sitter-cli: 0.23.2
       which: 2.0.2
 
   tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/51385e9773b7eb96767281825a5a9877aa7368db(tree-sitter@0.25.0):

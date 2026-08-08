@@ -44,7 +44,7 @@ async function gitCloneOverload(name: ParserName, commitHashOverload?: string) {
 
   try {
     const repoUrl = `https://github.com/${match[1]}.git`;
-    const commitHash = typeof commitHashOverload !== 'undefined' ? commitHashOverload : match[2];
+    const commitHash = commitHashOverload !== undefined ? commitHashOverload : match[2];
 
     console.log(`🗑️  Deleting cached node dependency for ${name}`);
     await exec(`rm -rf ${packagePath}`);

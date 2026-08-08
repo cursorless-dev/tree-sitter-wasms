@@ -33,7 +33,7 @@ function getPackagePath(name: string) {
   }
 }
 
-async function gitCloneOverload(name: ParserName, commitHashOverload?: string) {
+async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
   const value = dependencies[name];
   const match = /^github:(\S+)#(\S+)$/.exec(value);
@@ -44,7 +44,7 @@ async function gitCloneOverload(name: ParserName, commitHashOverload?: string) {
 
   try {
     const repoUrl = `https://github.com/${match[1]}.git`;
-    const commitHash = commitHashOverload ?? match[2];
+    const commitHash = match[2];
 
     console.log(`🗑️  Deleting cached node dependency for ${name}`);
     await exec(`rm -rf ${packagePath}`);
@@ -121,17 +121,9 @@ async function processParser(name: ParserName) {
       });
       break;
 
-    // case "tree-sitter-swift":
-    //   // This is a crude bodge job that should be replaced if possible in the future!
-    //   // You need to get the commit hash from the with-generated-files branch in the tree-sitter-swift repo.
-    //   await gitCloneOverload(name, "31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5");
-    //   await buildParserWASM(name);
-    //   break;
-
     case "tree-sitter-elixir":
     case "tree-sitter-perl":
     case "tree-sitter-query":
-    case "tree-sitter-swift":
       await gitCloneOverload(name);
       await buildParserWASM(name, { generate: true });
       break;

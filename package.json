@@ -14,7 +14,9 @@
     "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
   },
   "pnpm": {
-    "neverBuiltDependencies": []
+    "neverBuiltDependencies": [
+      "tree-sitter-swift"
+    ]
   },
   "scripts": {
     "clean": "rm -rf out",

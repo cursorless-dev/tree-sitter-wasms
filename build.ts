@@ -33,7 +33,7 @@ function getPackagePath(name: string) {
   }
 }
 
-async function gitCloneOverload(name: ParserName) {
+async function gitCloneOverload(name: ParserName, commitHashOverload?: string) {
   const packagePath = getPackagePath(name);
   const value = dependencies[name];
   const match = /^github:(\S+)#(\S+)$/.exec(value);
@@ -44,7 +44,7 @@ async function gitCloneOverload(name: ParserName) {
 
   try {
     const repoUrl = `https://github.com/${match[1]}.git`;
-    const commitHash = match[2];
+    const commitHash = typeof commitHashOverload !== 'undefined' ? commitHashOverload : match[2];
 
     console.log(`🗑️  Deleting cached node dependency for ${name}`);
     await exec(`rm -rf ${packagePath}`);
@@ -119,6 +119,12 @@ async function processParser(name: ParserName) {
       await buildParserWASM(name, {
         subPath: "tree-sitter-markdown-inline",
       });
+      break;
+    
+    case "tree-sitter-swift":
+      // This is a crude bodge job that should be replaced if possible in the future!
+      await gitCloneOverload(name, "b8b22bffbb3441780e6471665bacfb263741c86a");
+      await buildParserWASM(name);
       break;
 
     case "tree-sitter-elixir":

@@ -44,7 +44,7 @@ async function gitCloneOverload(name: ParserName, commitHashOverload?: string) {
 
   try {
     const repoUrl = `https://github.com/${match[1]}.git`;
-    const commitHash = commitHashOverload !== undefined ? commitHashOverload : match[2];
+    const commitHash = commitHashOverload ?? match[2];
 
     console.log(`🗑️  Deleting cached node dependency for ${name}`);
     await exec(`rm -rf ${packagePath}`);
@@ -120,7 +120,7 @@ async function processParser(name: ParserName) {
         subPath: "tree-sitter-markdown-inline",
       });
       break;
-    
+
     case "tree-sitter-swift":
       // This is a crude bodge job that should be replaced if possible in the future!
       // You need to get the commit hash from the with-generated-files branch in the tree-sitter-swift repo.

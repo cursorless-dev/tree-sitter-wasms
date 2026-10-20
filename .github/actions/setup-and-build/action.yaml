@@ -8,9 +8,11 @@ runs:
       uses: actions/setup-node@v7
       with:
         node-version-file: .nvmrc
+        cache: npm
 
     - name: Install pinned npm version
-      run: npm install -g npm@11.19.1
+      # Avoid npm 10's self-upgrade bug by running the installer from npx's cache.
+      run: npx --yes npm@11.19.1 install --global npm@11.19.1
       shell: bash
 
     - name: Install dependencies

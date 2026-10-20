@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { exit } from "node:process";
 import { fileURLToPath } from "node:url";
-import util from "node:util";
+import { promisify } from "node:util";
 import { PromisePool } from "@supercharge/promise-pool";
 import findRoot from "find-root";
 import packageInfo from "./package.json" with { type: "json" };
@@ -22,7 +22,7 @@ class ParserError extends Error {
 const __dirname = import.meta.dirname;
 const dependencies = packageInfo.devDependencies;
 type ParserName = keyof typeof dependencies;
-const exec = util.promisify(execSync);
+const exec = promisify(execSync);
 const outDir = path.join(__dirname, "out");
 
 function getPackagePath(name: string) {
@@ -33,56 +33,19 @@ function getPackagePath(name: string) {
   }
 }
 
-async function gitCloneOverload(name: ParserName) {
-  const packagePath = getPackagePath(name);
-  const value = dependencies[name];
-  const match = /^github:(\S+)#(\S+)$/.exec(value);
-
-  if (match == null) {
-    throw new ParserError(`❗ Failed to parse git repo for ${name}`, value);
-  }
-
-  try {
-    const repoUrl = `https://github.com/${match[1]}.git`;
-    const commitHash = match[2];
-
-    console.log(`🗑️  Deleting cached node dependency for ${name}`);
-    await exec(`rm -rf ${packagePath}`);
-    console.log(`⬇️  Cloning ${name} from git`);
-    await exec(`git clone ${repoUrl} ${packagePath}`);
-    process.chdir(packagePath);
-    await exec(`git reset --hard ${commitHash}`);
-  } catch (error) {
-    throw new ParserError(`❗Failed to clone git repo for ${name}`, error);
-  }
-}
-
-async function buildParserWASM(
-  name: ParserName,
-  { subPath, generate }: { subPath?: string; generate?: boolean } = {},
-) {
-  const label = subPath != null ? path.join(name, subPath) : name;
-
+async function buildParserWASM(name: ParserName, subPath?: string) {
+  const label = subPath == null ? name : path.join(name, subPath);
   const cliPackagePath = getPackagePath("tree-sitter-cli");
   const packagePath = getPackagePath(name);
   const cliPath = path.join(cliPackagePath, "tree-sitter");
-  const generateCommand = cliPath.concat(" generate");
-  const buildCommand = cliPath.concat(" build --wasm");
+  const buildCommand = `${cliPath} build --wasm`;
 
   console.log(`⏳ Building ${label}`);
 
-  const cwd = subPath != null ? path.join(packagePath, subPath) : packagePath;
+  const cwd = subPath == null ? packagePath : path.join(packagePath, subPath);
 
   if (!fs.existsSync(cwd)) {
     throw new ParserError(`❗ Failed to find cwd ${label}`, cwd);
-  }
-
-  if (generate) {
-    try {
-      await exec(generateCommand, { cwd });
-    } catch (error) {
-      throw new ParserError(`❗ Failed to generate ${label}`, error);
-    }
   }
 
   try {
@@ -98,34 +61,22 @@ async function processParser(name: ParserName) {
   // oxlint-disable-next-line typescript/switch-exhaustiveness-check
   switch (name) {
     case "tree-sitter-php":
-      await buildParserWASM(name, { subPath: "php" });
+      await buildParserWASM(name, "php");
       break;
 
     case "tree-sitter-typescript":
-      await buildParserWASM(name, { subPath: "typescript" });
-      await buildParserWASM(name, { subPath: "tsx" });
+      await buildParserWASM(name, "typescript");
+      await buildParserWASM(name, "tsx");
       break;
 
     case "tree-sitter-xml":
-      await buildParserWASM(name, { subPath: "xml" });
-      await buildParserWASM(name, { subPath: "dtd" });
+      await buildParserWASM(name, "xml");
+      await buildParserWASM(name, "dtd");
       break;
 
     case "tree-sitter-markdown":
-      await gitCloneOverload(name);
-      await buildParserWASM(name, {
-        subPath: "tree-sitter-markdown",
-      });
-      await buildParserWASM(name, {
-        subPath: "tree-sitter-markdown-inline",
-      });
-      break;
-
-    case "tree-sitter-elixir":
-    case "tree-sitter-perl":
-    case "tree-sitter-query":
-      await gitCloneOverload(name);
-      await buildParserWASM(name, { generate: true });
+      await buildParserWASM(name, "tree-sitter-markdown");
+      await buildParserWASM(name, "tree-sitter-markdown-inline");
       break;
 
     default:

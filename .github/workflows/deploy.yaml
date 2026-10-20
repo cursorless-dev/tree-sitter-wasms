@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Setup and build
         uses: ./.github/actions/setup-and-build
@@ -34,7 +34,7 @@ jobs:
           fi
 
       - name: Publish to NPM
-        run: npx -y npm@11.6.2 publish --access public
+        run: npm --color publish --access public
 
       - name: Create Git tag
         run: |

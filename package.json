@@ -1,6 +1,6 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
   "author": "Cursorless Dev",
   "license": "Unlicense",

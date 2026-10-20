@@ -144,8 +144,8 @@ importers:
         specifier: github:alex-pinkus/tree-sitter-swift#31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5
         version: https://codeload.github.com/alex-pinkus/tree-sitter-swift/tar.gz/31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5(tree-sitter@0.25.0)
       tree-sitter-talon:
-        specifier: github:wenkokke/tree-sitter-talon#51385e9773b7eb96767281825a5a9877aa7368db
-        version: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/51385e9773b7eb96767281825a5a9877aa7368db(tree-sitter@0.25.0)
+        specifier: github:wenkokke/tree-sitter-talon#292515921c4bc50cd3dd2df833d2fd773265994c
+        version: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/292515921c4bc50cd3dd2df833d2fd773265994c(tree-sitter@0.25.0)
       tree-sitter-typescript:
         specifier: github:tree-sitter/tree-sitter-typescript#4ad3010c91d700026d036b5230e2d99ba94ae8a4
         version: https://codeload.github.com/tree-sitter/tree-sitter-typescript/tar.gz/4ad3010c91d700026d036b5230e2d99ba94ae8a4(tree-sitter@0.25.0)
@@ -1061,8 +1061,8 @@ packages:
       tree_sitter:
         optional: true
 
-  tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/51385e9773b7eb96767281825a5a9877aa7368db:
-    resolution: {tarball: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/51385e9773b7eb96767281825a5a9877aa7368db}
+  tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/292515921c4bc50cd3dd2df833d2fd773265994c:
+    resolution: {tarball: https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/292515921c4bc50cd3dd2df833d2fd773265994c}
     version: 5.0.0
     peerDependencies:
       tree-sitter: ^0.21.1
@@ -1783,7 +1783,7 @@ snapshots:
       tree-sitter-cli: 0.23.2
       which: 2.0.2
 
-  tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/51385e9773b7eb96767281825a5a9877aa7368db(tree-sitter@0.25.0):
+  tree-sitter-talon@https://codeload.github.com/wenkokke/tree-sitter-talon/tar.gz/292515921c4bc50cd3dd2df833d2fd773265994c(tree-sitter@0.25.0):
     dependencies:
       node-addon-api: 8.5.0
       node-gyp-build: 4.8.4

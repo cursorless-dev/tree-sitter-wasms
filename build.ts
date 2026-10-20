@@ -33,32 +33,6 @@ function getPackagePath(name: string) {
   }
 }
 
-async function gitCloneOverload(name: ParserName) {
-  const packagePath = getPackagePath(name);
-  const value = dependencies[name];
-  const match =
-    /^https:\/\/codeload\.github\.com\/([^/]+\/[^/]+)\/tar\.gz\/([a-f0-9]{40})$/u.exec(
-      value,
-    );
-
-  if (match == null) {
-    throw new ParserError(`❗ Failed to parse git repo for ${name}`, value);
-  }
-
-  try {
-    const repoUrl = `https://github.com/${match[1]}.git`;
-    const commitHash = match[2];
-
-    console.log(`🗑️  Deleting cached node dependency for ${name}`);
-    await exec(`rm -rf ${packagePath}`);
-    console.log(`⬇️  Cloning ${name} from git`);
-    await exec(`git clone ${repoUrl} ${packagePath}`);
-    await exec(`git reset --hard ${commitHash}`, { cwd: packagePath });
-  } catch (error) {
-    throw new ParserError(`❗Failed to clone git repo for ${name}`, error);
-  }
-}
-
 async function buildParserWASM(
   name: ParserName,
   { subPath, generate }: { subPath?: string; generate?: boolean } = {},
@@ -114,7 +88,6 @@ async function processParser(name: ParserName) {
       break;
 
     case "tree-sitter-markdown":
-      await gitCloneOverload(name);
       await buildParserWASM(name, {
         subPath: "tree-sitter-markdown",
       });
@@ -126,7 +99,6 @@ async function processParser(name: ParserName) {
     case "tree-sitter-elixir":
     case "tree-sitter-perl":
     case "tree-sitter-query":
-      await gitCloneOverload(name);
       await buildParserWASM(name, { generate: true });
       break;
 

@@ -36,7 +36,10 @@ function getPackagePath(name: string) {
 async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
   const value = dependencies[name];
-  const match = /^github:(\S+)#(\S+)$/u.exec(value);
+  const match =
+    /^https:\/\/codeload\.github\.com\/([^/]+\/[^/]+)\/tar\.gz\/([a-f0-9]{40})$/u.exec(
+      value,
+    );
 
   if (match == null) {
     throw new ParserError(`❗ Failed to parse git repo for ${name}`, value);
@@ -50,8 +53,7 @@ async function gitCloneOverload(name: ParserName) {
     await exec(`rm -rf ${packagePath}`);
     console.log(`⬇️  Cloning ${name} from git`);
     await exec(`git clone ${repoUrl} ${packagePath}`);
-    process.chdir(packagePath);
-    await exec(`git reset --hard ${commitHash}`);
+    await exec(`git reset --hard ${commitHash}`, { cwd: packagePath });
   } catch (error) {
     throw new ParserError(`❗Failed to clone git repo for ${name}`, error);
   }

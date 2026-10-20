@@ -33,17 +33,12 @@ function getPackagePath(name: string) {
   }
 }
 
-async function buildParserWASM(
-  name: ParserName,
-  { subPath, generate }: { subPath?: string; generate?: boolean } = {},
-) {
+async function buildParserWASM(name: ParserName, subPath?: string) {
   const label = subPath == null ? name : path.join(name, subPath);
-
   const cliPackagePath = getPackagePath("tree-sitter-cli");
   const packagePath = getPackagePath(name);
   const cliPath = path.join(cliPackagePath, "tree-sitter");
-  const generateCommand = cliPath.concat(" generate");
-  const buildCommand = cliPath.concat(" build --wasm");
+  const buildCommand = `${cliPath} build --wasm`;
 
   console.log(`⏳ Building ${label}`);
 
@@ -51,14 +46,6 @@ async function buildParserWASM(
 
   if (!fs.existsSync(cwd)) {
     throw new ParserError(`❗ Failed to find cwd ${label}`, cwd);
-  }
-
-  if (generate) {
-    try {
-      await exec(generateCommand, { cwd });
-    } catch (error) {
-      throw new ParserError(`❗ Failed to generate ${label}`, error);
-    }
   }
 
   try {
@@ -74,32 +61,22 @@ async function processParser(name: ParserName) {
   // oxlint-disable-next-line typescript/switch-exhaustiveness-check
   switch (name) {
     case "tree-sitter-php":
-      await buildParserWASM(name, { subPath: "php" });
+      await buildParserWASM(name, "php");
       break;
 
     case "tree-sitter-typescript":
-      await buildParserWASM(name, { subPath: "typescript" });
-      await buildParserWASM(name, { subPath: "tsx" });
+      await buildParserWASM(name, "typescript");
+      await buildParserWASM(name, "tsx");
       break;
 
     case "tree-sitter-xml":
-      await buildParserWASM(name, { subPath: "xml" });
-      await buildParserWASM(name, { subPath: "dtd" });
+      await buildParserWASM(name, "xml");
+      await buildParserWASM(name, "dtd");
       break;
 
     case "tree-sitter-markdown":
-      await buildParserWASM(name, {
-        subPath: "tree-sitter-markdown",
-      });
-      await buildParserWASM(name, {
-        subPath: "tree-sitter-markdown-inline",
-      });
-      break;
-
-    case "tree-sitter-elixir":
-    case "tree-sitter-perl":
-    case "tree-sitter-query":
-      await buildParserWASM(name, { generate: true });
+      await buildParserWASM(name, "tree-sitter-markdown");
+      await buildParserWASM(name, "tree-sitter-markdown-inline");
       break;
 
     default:

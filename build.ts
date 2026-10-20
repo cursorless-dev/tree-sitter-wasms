@@ -4,7 +4,7 @@ import os from "node:os";
 import path from "node:path";
 import { exit } from "node:process";
 import { fileURLToPath } from "node:url";
-import util from "node:util";
+import { promisify } from "node:util";
 import { PromisePool } from "@supercharge/promise-pool";
 import findRoot from "find-root";
 import packageInfo from "./package.json" with { type: "json" };
@@ -22,7 +22,7 @@ class ParserError extends Error {
 const __dirname = import.meta.dirname;
 const dependencies = packageInfo.devDependencies;
 type ParserName = keyof typeof dependencies;
-const exec = util.promisify(execSync);
+const exec = promisify(execSync);
 const outDir = path.join(__dirname, "out");
 
 function getPackagePath(name: string) {
@@ -36,7 +36,7 @@ function getPackagePath(name: string) {
 async function gitCloneOverload(name: ParserName) {
   const packagePath = getPackagePath(name);
   const value = dependencies[name];
-  const match = /^github:(\S+)#(\S+)$/.exec(value);
+  const match = /^github:(\S+)#(\S+)$/u.exec(value);
 
   if (match == null) {
     throw new ParserError(`❗ Failed to parse git repo for ${name}`, value);
@@ -61,7 +61,7 @@ async function buildParserWASM(
   name: ParserName,
   { subPath, generate }: { subPath?: string; generate?: boolean } = {},
 ) {
-  const label = subPath != null ? path.join(name, subPath) : name;
+  const label = subPath == null ? name : path.join(name, subPath);
 
   const cliPackagePath = getPackagePath("tree-sitter-cli");
   const packagePath = getPackagePath(name);
@@ -71,7 +71,7 @@ async function buildParserWASM(
 
   console.log(`⏳ Building ${label}`);
 
-  const cwd = subPath != null ? path.join(packagePath, subPath) : packagePath;
+  const cwd = subPath == null ? packagePath : path.join(packagePath, subPath);
 
   if (!fs.existsSync(cwd)) {
     throw new ParserError(`❗ Failed to find cwd ${label}`, cwd);

@@ -1,8 +1,7 @@
 {
   "name": "@cursorless/tree-sitter-wasms",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Prebuilt WASM binaries for tree-sitter's language parsers.",
-  "packageManager": "pnpm@10.0.0",
   "author": "Cursorless Dev",
   "license": "Unlicense",
   "type": "module",
@@ -12,11 +11,6 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
-  },
-  "pnpm": {
-    "neverBuiltDependencies": [
-      "tree-sitter-swift"
-    ]
   },
   "scripts": {
     "clean": "rm -rf out",
@@ -29,15 +23,18 @@
     "fix:ts": "oxlint -c oxlint.config.mts --fix .",
     "fix:fmt": "oxfmt ."
   },
+  "engines": {
+    "node": ">=v22.22.2"
+  },
   "devDependencies": {
     "@elm-tooling/tree-sitter-elm": "5.7.0",
     "@supercharge/promise-pool": "^3.3.0",
     "@types/find-root": "^1.1.4",
     "@types/node": "^22.19.15",
     "find-root": "^1.1.0",
-    "oxfmt": "^0.47.0",
-    "oxlint-tsgolint": "^0.22.1",
-    "oxlint": "^1.62.0",
+    "oxfmt": "^0.74.0",
+    "oxlint-tsgolint": "^7.0.2004",
+    "oxlint": "^1.89.0",
     "tree-sitter-agda": "github:tree-sitter/tree-sitter-agda#47802091de0cb8ac2533d67ac37e65692c5902c4",
     "tree-sitter-bash": "github:tree-sitter/tree-sitter-bash#2fbd860f802802ca76a6661ce025b3a3bca2d3ed",
     "tree-sitter-c-sharp": "0.19.0",

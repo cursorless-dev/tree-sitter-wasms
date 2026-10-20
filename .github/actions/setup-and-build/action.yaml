@@ -9,6 +9,10 @@ runs:
       with:
         node-version-file: .nvmrc
 
+    - name: Install pinned npm version
+      run: npm install -g npm@11.19.1
+      shell: bash
+
     - name: Install dependencies
       run: npm --color ci
       shell: bash

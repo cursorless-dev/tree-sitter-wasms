@@ -12,6 +12,9 @@
     "type": "git",
     "url": "git+https://github.com/cursorless-dev/tree-sitter-wasms.git"
   },
+  "allowScripts": {
+    "github:alex-pinkus/tree-sitter-swift#31d17fe7e818a2048c808b5c6fdc2dc792f4f5b5": false
+  },
   "scripts": {
     "clean": "rm -rf out",
     "build": "tsx ./build.ts",
